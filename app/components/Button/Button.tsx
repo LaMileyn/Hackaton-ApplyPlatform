@@ -30,18 +30,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           `
             rounded
             flex
-            font-semibold
             justify-center
             px-3
             items-center
             py-2
-            text-sm
+            text-base
         `,
           fullWidth && 'w-full',
-          disabled && 'opacity-50 cursor-default',
-          isTransparent && 'border-none bg-none',
+          disabled && 'opacity-50 cursor-default ',
+          isTransparent && 'border-none bg-none text-system-600',
           isSecondary &&
-            'border-1 border-system-300-b bg-system-200 text-system-600',
+            'border-2 border-system-300-b bg-system-200 text-system-600',
           isPrimary && 'bg-secondary-500 text-system-100'
         )}
         ref={ref}
