@@ -1,0 +1,16 @@
+{
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "importOrder": [
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^components/(.*)$",
+    "^types/?(.*)$",
+    "^images/?(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
