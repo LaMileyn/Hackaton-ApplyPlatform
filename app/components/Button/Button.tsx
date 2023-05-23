@@ -45,6 +45,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           !isTransparent && 'px-3 py-2'
         )}
         ref={ref}
+        onClick={onClick}
         {...props}
       >
         {iconLeft && (
