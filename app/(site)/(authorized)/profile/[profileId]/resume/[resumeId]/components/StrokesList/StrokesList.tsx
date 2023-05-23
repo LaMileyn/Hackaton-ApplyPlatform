@@ -4,11 +4,20 @@ import React, { FC } from 'react';
 import { StrokesListProps } from './types';
 import StrokeItem from '../StrokeItem/StrokeItem';
 
-const StrokesList: FC<StrokesListProps> = ({ strokes }) => {
+const StrokesList: FC<StrokesListProps> = ({
+  strokes,
+  blockId,
+  removeStroke,
+}) => {
   return (
     <ul>
       {strokes.map((stroke) => (
-        <StrokeItem stroke={stroke} key={stroke.id} />
+        <StrokeItem
+          stroke={stroke}
+          blockId={blockId}
+          key={stroke.id}
+          removeStroke={removeStroke}
+        />
       ))}
     </ul>
   );
