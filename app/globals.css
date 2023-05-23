@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-system-200;
+  @apply bg-system-200 overflow-x-hidden;
 }

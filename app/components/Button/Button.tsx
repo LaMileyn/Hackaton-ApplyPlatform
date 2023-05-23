@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef } from 'react';
 import { ButtonProps } from './types';
 import cn from 'classnames';
@@ -31,9 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             rounded
             flex
             justify-center
-            px-3
             items-center
-            py-2
             text-base
         `,
           fullWidth && 'w-full',
@@ -41,7 +41,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           isTransparent && 'border-none bg-none text-system-600',
           isSecondary &&
             'border-2 border-system-300-b bg-system-200 text-system-600',
-          isPrimary && 'bg-secondary-500 text-system-100'
+          isPrimary && 'bg-secondary-500 text-system-100',
+          !isTransparent && 'px-3 py-2'
         )}
         ref={ref}
         {...props}

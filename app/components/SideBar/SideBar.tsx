@@ -7,7 +7,7 @@ const SideBar: FC = () => {
   return (
     <aside
       className="h-screen 
-    bg-system-100 md:w-[280px] 
+    bg-system-100 w-[280px] 
     py-[60px] px-[30px] 
     flex flex-col justify-between"
     >
