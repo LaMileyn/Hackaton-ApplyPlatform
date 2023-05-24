@@ -2,14 +2,22 @@
 
 import ProfileHeader from '@/app/(site)/(authorized)/profile/components/ProfileHeader/ProfileHeader';
 import { Button } from '@/app/components';
-import React from 'react';
+import React, { FC } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
+import { ResumeHeaderProps } from './types';
+import { useRouter } from 'next/navigation';
 
-const ResumeHeader = () => {
+const ResumeHeader: FC<ResumeHeaderProps> = ({ isOwner }) => {
+  const router = useRouter();
+
   return (
     <div>
       <div className="mb-4">
-        <Button iconLeft={<IoIosArrowBack />} variant="transparent">
+        <Button
+          onClick={() => router.back()}
+          iconLeft={<IoIosArrowBack />}
+          variant="transparent"
+        >
           Назад
         </Button>
       </div>
@@ -17,10 +25,14 @@ const ResumeHeader = () => {
         <div className="flex-grow">
           <ProfileHeader />
         </div>
-        <div className="flex gap-2">
-          <Button variant="secondary">Удалить</Button>
-          <Button>Сохранить</Button>
-        </div>
+        {isOwner ? (
+          <div className="flex gap-2">
+            <Button variant="secondary">Удалить</Button>
+            <Button>Сохранить</Button>
+          </div>
+        ) : (
+          <Button>Пригласить</Button>
+        )}
       </div>
     </div>
   );

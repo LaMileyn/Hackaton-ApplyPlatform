@@ -3,9 +3,9 @@
 import { Heading } from '@/app/components';
 import React, { FC } from 'react';
 import BlocksList from '../BlocksList/BlocksList';
-import { blocksData } from './store';
+import { ResumeBodyProps } from './types';
 
-const ResumeBody: FC = () => {
+const ResumeBody: FC<ResumeBodyProps> = ({ blocks }) => {
   return (
     <div>
       <section className="mb-7">
@@ -14,7 +14,7 @@ const ResumeBody: FC = () => {
           Напишите сопроводительное сообщение о себе в несколько строк
         </p>
       </section>
-      <BlocksList blocks={blocksData} />
+      <BlocksList blocks={blocks} />
     </div>
   );
 };

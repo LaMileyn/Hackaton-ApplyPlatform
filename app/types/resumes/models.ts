@@ -11,3 +11,11 @@ export type ResumeStroke = {
   subtitle: string;
   description: string;
 };
+
+export type Resume = {
+  id: string;
+  title: string;
+  username: string;
+  aboutMe: string;
+  blocks: ResumeBlock[];
+};

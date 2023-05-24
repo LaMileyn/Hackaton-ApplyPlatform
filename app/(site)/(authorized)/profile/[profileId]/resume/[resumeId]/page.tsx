@@ -1,15 +1,20 @@
-import { Button, Container, Heading } from '@/app/components';
-import { IoIosArrowBack } from 'react-icons/io';
-import ProfileHeader from '../../../components/ProfileHeader';
-import ResumeHeader from './components/ResumeHeader';
-import ResumeBody from './components/ResumeBody';
+import { Container } from '@/app/components';
+import ResumeClient from './components/ResumeClient/ResumeClient';
+import { Resume } from '@/app/types/resumes/models';
+import { blocksData } from './components/ResumeClient/store';
 
 const ResumePage = () => {
-  // get the data
+  const resume: Resume = {
+    aboutMe: 'About me',
+    id: '1',
+    blocks: blocksData,
+    title: 'Interview resume',
+    username: 'Andrey Minnihanov',
+  };
+
   return (
     <Container>
-      <ResumeHeader />
-      <ResumeBody />
+      <ResumeClient resume={resume} />
     </Container>
   );
 };

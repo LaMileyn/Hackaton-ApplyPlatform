@@ -3,6 +3,7 @@
 import React, { FC } from 'react';
 import { StrokeItemProps } from './types';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { TextareaAutosize, TransparentInput } from '@/app/components';
 
 const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke, removeStroke }) => {
   return (
@@ -12,9 +13,28 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke, removeStroke }) => {
           <p>C июля 2021 - по октябрь 2022</p>
         </div>
         <div>
-          <div>{stroke.title}</div>
-          <div>{stroke.subtitle}</div>
-          <div>{stroke.description}</div>
+          <div>
+            <TransparentInput
+              className="text-primary-500"
+              value={stroke.title}
+              placeholder="Заголовок"
+              onChange={() => {}}
+            />
+          </div>
+          <div>
+            <TransparentInput
+              value={stroke.subtitle}
+              placeholder="Подзаголовок"
+              onChange={() => {}}
+            />
+          </div>
+          <div>
+            <TextareaAutosize
+              value="hello"
+              onChange={() => {}}
+              placeholder="Введите текст пожалуйста"
+            />
+          </div>
         </div>
       </div>
       <RiDeleteBin5Line

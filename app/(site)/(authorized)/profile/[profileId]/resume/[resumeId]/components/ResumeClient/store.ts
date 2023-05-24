@@ -5,14 +5,14 @@ export const initialStroke: ResumeStroke = {
   id: generateUuid(),
   dateFrom: '',
   dateTo: '',
-  description: '',
-  subtitle: '',
-  title: '',
+  description: 'Паша вернель лучший',
+  subtitle: 'Павер не лучший вернель',
+  title: 'Андроид дизайнер',
 };
 
 export const initialBlock: ResumeBlock = {
   id: generateUuid(),
-  title: '',
+  title: 'Образование Данниила',
   strokes: [initialStroke],
 };
 
