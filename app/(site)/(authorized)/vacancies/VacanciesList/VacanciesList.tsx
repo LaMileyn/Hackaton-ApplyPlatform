@@ -8,7 +8,7 @@ const VacanciesList: FC<VacanciesListProps> = ({ vacancies }) => {
   return (
     <ul className="flex-1">
       {vacancies.map((vacancy) => (
-        <VacancyItem key={vacancy.id} vacancy={vacancy} />
+        <VacancyItem key={vacancy.id} vacancy={vacancy} isCandidate={false} />
       ))}
     </ul>
   );

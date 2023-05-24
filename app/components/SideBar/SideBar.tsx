@@ -1,7 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { mainRoutes, extraRoutes } from './store';
-import RouteItem from './components/RouteItem/RouteItem';
+import RouteItem from './components/RouteItem';
+import RoutesList from './components/RoutesList';
 
 const SideBar: FC = () => {
   return (
@@ -14,22 +17,12 @@ const SideBar: FC = () => {
       <div>
         <Image src="/images/logo.svg" alt="logotype" width={220} height={28} />
         <nav className="mt-[60px]">
-          <ul>
-            {mainRoutes.map((route) => (
-              <RouteItem key={route.label} route={route} />
-            ))}
-          </ul>
+          <RoutesList routes={mainRoutes} />
         </nav>
       </div>
-      <div>
-        <nav>
-          <ul>
-            {extraRoutes.map((route) => (
-              <RouteItem key={route.label} route={route} />
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <nav>
+        <RoutesList routes={extraRoutes} />
+      </nav>
     </aside>
   );
 };

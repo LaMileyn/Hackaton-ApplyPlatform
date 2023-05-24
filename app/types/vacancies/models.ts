@@ -3,6 +3,7 @@ export type Vacancy = {
   title: string;
   company: string;
   description: string;
+  status?: string;
   infoBlocks: VacancyInfoBlock[];
 };
 

@@ -5,3 +5,5 @@ export { default as Heading } from './Heading';
 export { default as TransparentInput } from './Inputs/TransparentInput';
 export { default as TextareaAutosize } from './TextareaAutosize';
 export { default as HorisontalAdd } from './HorisontalAdd';
+export { default as Select } from './Select';
+export { default as Status } from './Status';

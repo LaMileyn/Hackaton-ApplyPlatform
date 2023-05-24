@@ -3,7 +3,6 @@
 import React, { FC } from 'react';
 import { filtersData } from './store';
 import VacancyFilterItem from './components/VacancyFilterItem';
-import Select from '@/app/components/Select/Select';
 
 const VacanciesFilters: FC = () => {
   return (

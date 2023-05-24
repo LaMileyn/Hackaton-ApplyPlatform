@@ -8,7 +8,8 @@ import VacanciesFilters from './VacanciesFilters/VacanciesFilters';
 const VacaniesPage = () => {
   return (
     <Container>
-      <div className="flex gap-4">
+      <h1 className="text-4xl text-primary-500 mb-4">Вакансии</h1>
+      <div className="flex gap-4 items-start">
         <VacanciesList vacancies={fakeVacancies} />
         <VacanciesFilters />
       </div>

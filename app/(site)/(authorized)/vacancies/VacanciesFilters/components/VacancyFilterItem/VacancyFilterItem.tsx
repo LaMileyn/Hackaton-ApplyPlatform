@@ -9,11 +9,13 @@ const VacancyFilterItem: FC<VacanciesFilterItemProps> = ({ item }) => {
 
   const selected = useMemo(() => {
     return item.options.find((el) => el.value === value);
-  }, []);
+  }, [item, value]);
 
   const handleMonthChange = useCallback((value: string | number) => {
     setValue(value);
   }, []);
+
+  console.log();
 
   return (
     <div className="mb-4">

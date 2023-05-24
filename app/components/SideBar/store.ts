@@ -5,22 +5,22 @@ export const mainRoutes: Route[] = [
   {
     label: 'Главная',
     Icon: RxDashboard,
-    link: '',
+    link: '/',
   },
   {
     label: 'Профиль',
     Icon: RxDashboard,
-    link: '',
+    link: '/profile',
   },
   {
     label: 'Вакансии',
     Icon: RxDashboard,
-    link: '',
+    link: '/vacancies',
   },
   {
     label: 'Отклики',
     Icon: RxDashboard,
-    link: '',
+    link: '/applies',
   },
 ];
 
