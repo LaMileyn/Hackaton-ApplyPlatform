@@ -1,10 +1,17 @@
+'use client';
+
 import { Container } from '@/app/components';
-import VacanciesClient from './VacanciesClient/VacanciesClient';
+import VacanciesList from './VacanciesList/VacanciesList';
+import { fakeVacancies } from './VacanciesList/store';
+import VacanciesFilters from './VacanciesFilters/VacanciesFilters';
 
 const VacaniesPage = () => {
   return (
     <Container>
-      <VacanciesClient />
+      <div className="flex gap-4">
+        <VacanciesList vacancies={fakeVacancies} />
+        <VacanciesFilters />
+      </div>
     </Container>
   );
 };
