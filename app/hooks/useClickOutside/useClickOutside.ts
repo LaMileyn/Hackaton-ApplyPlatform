@@ -1,9 +1,9 @@
 import { MutableRefObject, RefObject, useEffect, useRef } from 'react';
 
 const useClickOutside = <T>(
-  handler: () => void,
-  listenerOptions?: AddEventListenerOptions,
-  customRef?: MutableRefObject<T>
+  handler: (e: Event) => void,
+  customRef?: MutableRefObject<T>,
+  listenerOptions?: AddEventListenerOptions
 ): RefObject<T> => {
   const ref = useRef<T>(null);
 
@@ -17,7 +17,7 @@ const useClickOutside = <T>(
         parent instanceof Node &&
         !parent.contains(target)
       ) {
-        handler();
+        handler(event);
       }
     };
 
