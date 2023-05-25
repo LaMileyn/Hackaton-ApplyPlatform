@@ -8,3 +8,5 @@ export { default as HorisontalAdd } from './HorisontalAdd';
 export { default as Select } from './Select';
 export { default as Status } from './Status';
 export { default as SidebarInfo } from './SidebarInfo';
+export { default as ApplyStage } from './ApplyStage';
+export { default as TextLink } from './TextLink';

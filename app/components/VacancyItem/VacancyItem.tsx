@@ -25,7 +25,9 @@ const VacancyItem: FC<VacancyItemProps> = ({
         )}
       </div>
 
-      <div className="mb-5 text-base text-system-900">{company}</div>
+      <div className="mb-5 text-base text-system-900 font-medium">
+        {company}
+      </div>
       <div className="mb-5 text-base text-system-600">{description}</div>
       {!isCandidate && vacancieType === 'vacancy' && (
         <Status text={status || ''} />

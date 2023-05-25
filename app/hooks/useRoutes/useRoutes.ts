@@ -28,7 +28,7 @@ const useRoutes = () => {
         label: 'Профиль',
         Icon: RxDashboard,
         link: PROFILE_ROUTE,
-        isActive: checkActive(HOME_ROUTE),
+        isActive: checkActive(PROFILE_ROUTE),
         hidden: isRecruter,
       },
       {
