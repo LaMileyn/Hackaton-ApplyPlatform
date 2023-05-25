@@ -1,6 +1,6 @@
 'use client';
 
-import { Container } from '@/app/components';
+import { Container, SidebarInfo } from '@/app/components';
 import AppliesList from './components/AppliesList/AppliesList';
 import { Applie } from '@/app/types/applies';
 import { useState } from 'react';
@@ -41,14 +41,19 @@ const mockData: Applie[] = [
 ];
 
 const AppliesPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <div>
       <Container>
         <h1 className="text-4xl text-primary-500 mb-4">Отклики</h1>
         <AppliesList applies={mockData} openInfoBar={setIsOpen} />
       </Container>
+      <SidebarInfo
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        children={<div></div>}
+      />
     </div>
   );
 };
