@@ -3,6 +3,7 @@
 import React, { FC } from 'react';
 import { filtersData } from './store';
 import VacancyFilterItem from './components/VacancyFilterItem';
+import { Button } from '@/app/components';
 
 const VacanciesFilters: FC = () => {
   return (
@@ -10,6 +11,9 @@ const VacanciesFilters: FC = () => {
       {filtersData.map((filterItem, i) => {
         return <VacancyFilterItem key={i} item={filterItem} />;
       })}
+      <Button className="py-5" onClick={() => {}} variant="secondary" fullWidth>
+        Сбросить фильтры
+      </Button>
     </div>
   );
 };

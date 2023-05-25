@@ -19,11 +19,11 @@ const VacancyFilterItem: FC<VacanciesFilterItemProps> = ({ item }) => {
 
   return (
     <div className="mb-4">
-      <div className="text-system-900 mb-1">{item.label}</div>
       <Select
         selected={selected || null}
         onChange={handleMonthChange}
         options={item.options}
+        label={item.label}
         placeholder={item.placeholder}
       />
     </div>

@@ -11,7 +11,7 @@ export default function AuthorizedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex">
+    <div className="flex relative">
       <SideBar />
       <div className="w-full">{children}</div>
     </div>

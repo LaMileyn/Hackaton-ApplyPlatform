@@ -2,11 +2,12 @@
 
 import Image from 'next/image';
 import React, { FC } from 'react';
-import { mainRoutes, extraRoutes } from './store';
 import RouteItem from './components/RouteItem';
 import RoutesList from './components/RoutesList';
+import useRoutes from '@/app/hooks/useRoutes/useRoutes';
 
 const SideBar: FC = () => {
+  const { bottomRoutes, mainRoutes } = useRoutes();
   return (
     <aside
       className="h-screen 
@@ -21,7 +22,7 @@ const SideBar: FC = () => {
         </nav>
       </div>
       <nav>
-        <RoutesList routes={extraRoutes} />
+        <RoutesList routes={bottomRoutes} />
       </nav>
     </aside>
   );
