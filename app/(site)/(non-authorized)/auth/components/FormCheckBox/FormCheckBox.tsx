@@ -12,7 +12,7 @@ const FormCheckBox: FC = () => {
       />
       <span className="ml-3">
         Я даю согласие на{' '}
-        <TextLink text="обработку персональных данных" hovered href="/" />и
+        <TextLink text="обработку персональных данных" hovered href="/" /> и
         ознакомлен с{' '}
         <TextLink text="политикой конфиденциальности" hovered href="/" />
       </span>
