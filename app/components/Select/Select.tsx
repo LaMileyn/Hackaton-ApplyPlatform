@@ -58,7 +58,11 @@ function Select<T extends OptionValue>(props: SelectProps<T>) {
           bg-system-100 mt-2 w-full z-50 shadow-md"
           >
             {options.map((option) => (
-              <OptionItem option={option} onClick={handleOptionClick} />
+              <OptionItem
+                option={option}
+                onClick={handleOptionClick}
+                key={option.value}
+              />
             ))}
           </ul>
         )}
