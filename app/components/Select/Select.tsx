@@ -40,6 +40,7 @@ function Select<T extends OptionValue>(props: SelectProps<T>) {
         relative
         flex items-center
         justify-between
+        cursor-pointer
         border-system-300-b
         "
       >

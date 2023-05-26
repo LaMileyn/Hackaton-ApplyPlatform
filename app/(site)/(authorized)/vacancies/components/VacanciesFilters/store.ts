@@ -3,16 +3,18 @@ import { VacanciesFilterItem } from './types';
 export const filtersData: VacanciesFilterItem[] = [
   {
     label: 'Город',
+    code: 'city',
     placeholder: 'Все города',
     options: [
       { title: 'Челябинск', value: 'chel' },
-      { title: 'Москва', value: 'aga' },
-      { title: 'Новосибирск', value: 'uhu' },
+      { title: 'Москва', value: 'moscow' },
+      { title: 'Новосибирск', value: 'novosib' },
       { title: 'Яха', value: 'igig' },
     ],
   },
   {
     label: 'Компания',
+    code: 'company',
     placeholder: 'Все компании',
     options: [
       { title: 'Челябинск', value: 'chel' },
@@ -23,6 +25,7 @@ export const filtersData: VacanciesFilterItem[] = [
   },
   {
     label: 'Специализация',
+    code: 'spec',
     placeholder: 'Все специальности',
     options: [
       { title: 'Челябинск', value: 'chel' },
@@ -33,6 +36,7 @@ export const filtersData: VacanciesFilterItem[] = [
   },
   {
     label: 'Опыт работы',
+    code: 'experience',
     placeholder: 'Любой',
     options: [
       { title: 'Без опыта', value: 'chel' },
@@ -43,6 +47,7 @@ export const filtersData: VacanciesFilterItem[] = [
   },
   {
     label: 'Тип занятости',
+    code: 'workType',
     placeholder: 'Любой',
     options: [
       { title: 'Челябинск', value: 'chel' },

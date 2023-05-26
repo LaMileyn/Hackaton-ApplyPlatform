@@ -15,7 +15,6 @@ const Card: FC<CardProps> = ({
   onClick,
   vacancyStatus,
 }) => {
-  console.log(vacancyStatus);
   return (
     <div
       className="p-4 bg-system-100 mb-3 rounded cursor-pointer"
