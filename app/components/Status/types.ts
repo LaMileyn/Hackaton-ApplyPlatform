@@ -1,7 +1,7 @@
-type statusVariant = 'danger' | 'warning' | 'primary' | 'success';
+export type StatusVariant = 'danger' | 'warning' | 'primary' | 'success';
 
 export type StatusProps = {
-  variant?: statusVariant;
+  variant?: StatusVariant;
   className?: string;
   text: string;
 };

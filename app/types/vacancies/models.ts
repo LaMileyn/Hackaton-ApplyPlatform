@@ -22,7 +22,7 @@ export enum EVacancyStatus {
 export type Vacancy = {
   title: string;
   company: string;
-  description: string;
+  description?: string;
   status: EVacancyStatus;
 } & BaseModel;
 

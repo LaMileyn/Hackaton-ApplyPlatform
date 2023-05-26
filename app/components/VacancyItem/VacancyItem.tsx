@@ -16,7 +16,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
   return (
     <li
       className="p-4 bg-system-100 mb-3 rounded cursor-pointer"
-      onClick={onClick}
+      onClick={onClick ?? undefined}
     >
       <div className="flex items-center justify-between">
         <div className="mb-3 text-primary-500 text-xl">{title}</div>

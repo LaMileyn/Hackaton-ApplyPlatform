@@ -3,9 +3,9 @@ import { Vacancy } from '@/app/types/vacancies';
 export type VacancyItemProps = {
   title: string;
   company: string;
-  description: string;
+  description?: string;
   isCandidate: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   status?: string;
   vacancieType: 'apply' | 'vacancy';
 };
