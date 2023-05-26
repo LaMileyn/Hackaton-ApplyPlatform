@@ -1,7 +1,11 @@
-import { ResumeBlock, ResumeStroke } from '@/app/types/resumes/models';
+import {
+  ResumeBlock,
+  ResumeBlockFull,
+  ResumeStroke,
+} from '@/app/types/resumes/models';
 
 export type BlockListProps = {
-  blocks: ResumeBlock[];
+  blocks: ResumeBlockFull[];
 };
 
 export type ResumeStokeKeys = keyof ResumeStroke;

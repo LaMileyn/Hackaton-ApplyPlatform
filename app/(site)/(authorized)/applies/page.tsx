@@ -2,40 +2,33 @@
 
 import { Container, SidebarInfo } from '@/app/components';
 import AppliesList from './components/AppliesList';
-import { Applie } from '@/app/types/applies';
+import { Applie, ApplieWithVacancy, EApplieStatus } from '@/app/types/applies';
 import { useState } from 'react';
 import ApplyInfo from './components/ApplyInfo';
+import { EVacancyStatus } from '@/app/types/vacancies';
 
-const mockData: Applie[] = [
+const mockData: ApplieWithVacancy[] = [
   {
-    id: '1',
+    id: 1,
+    comment: 'Mobile Frontend Developer',
+    status: EApplieStatus.INVITE,
     vacancy: {
+      id: 1,
+      status: EVacancyStatus.INTERVIEW,
       description: 'Hello',
       title: 'Frontend Developer',
       company: 'Vkontakte',
     },
   },
   {
-    id: '2',
+    id: 2,
+    comment: 'Senior Frontend Developer',
+    status: EApplieStatus.INVITE,
     vacancy: {
-      description: 'Hello world',
-      title: 'Middle Frontend Developer',
-      company: 'Vkontakte',
-    },
-  },
-  {
-    id: '3',
-    vacancy: {
-      description: 'Wooooooo',
-      title: 'Senior Frontend Developer',
-      company: 'Microsoft',
-    },
-  },
-  {
-    id: '4',
-    vacancy: {
-      description: 'Lorem15',
-      title: 'Backend Java/Laravel',
+      id: 2,
+      status: EVacancyStatus.INTERVIEW,
+      description: 'Hello',
+      title: 'Frontend Developer',
       company: 'Vkontakte',
     },
   },

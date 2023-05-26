@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 const FormCheckBox: FC = () => {
   return (
-    <div className="">
+    <div className="mt-4">
       <input
         className="h-[1rem] w-[1rem]"
         type="checkbox"

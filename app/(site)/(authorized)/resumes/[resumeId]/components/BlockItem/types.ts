@@ -1,7 +1,7 @@
-import { ResumeBlock } from '@/app/types/resumes/models';
+import { ResumeBlockFull } from '@/app/types/resumes/models';
 
 export type BlockItemProps = {
-  block: ResumeBlock;
-  addStroke: (blockId: string) => void;
-  removeStroke: (blockId: string, stringId: string) => void;
+  block: ResumeBlockFull;
+  addStroke: (blockId: number) => void;
+  removeStroke: (blockId: number, stringId: number) => void;
 };

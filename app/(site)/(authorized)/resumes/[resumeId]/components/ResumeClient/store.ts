@@ -1,8 +1,12 @@
 import { generateUuid } from '@/app/helpers';
-import { ResumeBlock, ResumeStroke } from '@/app/types/resumes/models';
+import {
+  ResumeBlock,
+  ResumeBlockFull,
+  ResumeStroke,
+} from '@/app/types/resumes/models';
 
 export const initialStroke: ResumeStroke = {
-  id: generateUuid(),
+  id: 1,
   dateFrom: '',
   dateTo: '',
   description: 'Паша вернель лучший',
@@ -10,19 +14,19 @@ export const initialStroke: ResumeStroke = {
   title: 'Андроид дизайнер',
 };
 
-export const initialBlock: ResumeBlock = {
-  id: generateUuid(),
+export const initialBlock: ResumeBlockFull = {
+  id: 1,
   title: 'Образование Данниила',
   strokes: [initialStroke],
 };
 
-export const blocksData: ResumeBlock[] = [
+export const blocksData: ResumeBlockFull[] = [
   {
-    id: generateUuid(),
+    id: 1,
     title: 'Опыт работы',
     strokes: [
       {
-        id: generateUuid(),
+        id: 1,
         title: 'Должность',
         subtitle: 'Организация',
         dateFrom: '',
@@ -34,11 +38,11 @@ export const blocksData: ResumeBlock[] = [
     ],
   },
   {
-    id: generateUuid(),
+    id: 2,
     title: 'Образование',
     strokes: [
       {
-        id: generateUuid(),
+        id: 3,
         title: 'Должность',
         subtitle: 'Организация',
         dateFrom: '',

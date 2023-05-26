@@ -1,21 +1,27 @@
+import { BaseModel } from '../common/models';
+
 export type ResumeBlock = {
-  id: string;
   title: string;
+} & BaseModel;
+
+export type ResumeBlockFull = {
   strokes: ResumeStroke[];
-};
+} & ResumeBlock;
+
 export type ResumeStroke = {
-  id: string;
   title: string;
   dateFrom: string;
   dateTo: string;
   subtitle: string;
   description: string;
-};
+} & BaseModel;
 
 export type Resume = {
-  id: string;
   title: string;
   username: string;
-  aboutMe: string;
-  blocks: ResumeBlock[];
-};
+  about: string;
+} & BaseModel;
+
+export type ResumeFull = {
+  blocks: ResumeBlockFull[];
+} & Resume;

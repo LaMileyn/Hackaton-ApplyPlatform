@@ -21,7 +21,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
          focus:outline-none 
          mb-3
          w-full
-         border
+         border-2
          text-base
          placeholder: text-system-600
         `,
