@@ -1,9 +1,21 @@
+'use client';
+
 import Image from 'next/image';
+import AuthForm from './components/AuthForm/AuthForm';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Authorization page</h1>
-    </main>
+    <div className="h-screen grid place-items-center">
+      <div className=" bg-system-100 max-w-md w-full py-4 rounded-xl px-3">
+        <Image
+          className="mt-5 mx-auto"
+          src="/images/logo.svg"
+          alt="logo"
+          width={220}
+          height={28}
+        />
+        <AuthForm />
+      </div>
+    </div>
   );
 }
