@@ -7,6 +7,7 @@ import {
   TESTS_ROUTE,
   VACANCIES_ROUTE,
 } from './app/const/appRoutes';
+import { USER_COOKIES_KEY } from './app/hooks/useUser/helpers';
 
 const privateRoutes = [
   HOME_ROUTE,
@@ -19,7 +20,7 @@ export function middleware(request: NextRequest) {
   const { cookies } = request;
 
   const url = request.url;
-  const token = cookies.get('auth');
+  const token = cookies.get(USER_COOKIES_KEY);
 
   if (url.includes(AUTH_ROUTE)) {
     if (token) {

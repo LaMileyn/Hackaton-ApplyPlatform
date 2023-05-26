@@ -9,11 +9,13 @@ import {
   VACANCIES_ROUTE,
 } from '@/app/const/appRoutes';
 import { RxDashboard } from 'react-icons/rx';
+import useSignOut from '../useSignOut/useSignOut';
 
 const useRoutes = () => {
+  const signOut = useSignOut();
   const pathname = usePathname();
-  const isRecruter = false;
 
+  const isRecruter = false;
   const checkActive = (route: string) => pathname === route;
 
   let mainRoutes = useMemo<Route[]>(
@@ -57,15 +59,10 @@ const useRoutes = () => {
   const bottomRoutes = useMemo<Route[]>(
     () => [
       {
-        label: 'Уведомления',
-        Icon: RxDashboard,
-        link: '',
-        isActive: checkActive(HOME_ROUTE),
-      },
-      {
         label: 'Выйти',
         Icon: RxDashboard,
-        link: '',
+        link: '#',
+        onClick: () => signOut(),
       },
     ],
     [pathname]

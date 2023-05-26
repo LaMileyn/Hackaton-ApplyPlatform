@@ -17,6 +17,7 @@ const AuthForm: FC = () => {
 
   const email = useInput();
   const password = useInput();
+  const fullName = useInput();
 
   const [formType, setFormType] = useState<EAuthForm>(EAuthForm.LOGIN);
   const [activeTab, setActiveTab] = useState<EAuthFormTab>(
@@ -35,7 +36,7 @@ const AuthForm: FC = () => {
   }, [selectOptions, role]);
 
   const signIn = useSignIn(email.value, password.value);
-  const signUp = useSignUp(email.value, password.value, role);
+  const signUp = useSignUp(email.value, password.value, role, fullName.value);
 
   const handleChangeFormType = () => {
     setFormType((prevType) =>
@@ -45,6 +46,7 @@ const AuthForm: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (formType === EAuthForm.LOGIN) {
       signIn();
     } else {
@@ -57,6 +59,9 @@ const AuthForm: FC = () => {
       <FormTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <form onSubmit={handleSubmit}>
         <FormInput type="email" {...email} placeholder="Электронная почта" />
+        {formType === EAuthForm.REGISTRATION && (
+          <FormInput type="text" {...fullName} placeholder="Ваше полное имя" />
+        )}
         <FormInput
           minLength={5}
           type="password"
@@ -75,10 +80,15 @@ const AuthForm: FC = () => {
         <Button className="mb-3 mt-6" fullWidth type="submit">
           {formType === EAuthForm.LOGIN ? 'Войти' : 'Зарегистрироваться'}
         </Button>
-        <Button variant="transparent" fullWidth onClick={handleChangeFormType}>
-          {formType === EAuthForm.LOGIN ? 'Зарегистрироваться' : 'Войти'}
-        </Button>
       </form>
+      <Button
+        type="button"
+        variant="transparent"
+        fullWidth
+        onClick={handleChangeFormType}
+      >
+        {formType === EAuthForm.LOGIN ? 'Зарегистрироваться' : 'Войти'}
+      </Button>
     </div>
   );
 };

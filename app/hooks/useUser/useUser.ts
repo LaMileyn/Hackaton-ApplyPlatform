@@ -1,3 +1,5 @@
+'use client;';
+
 import { userService } from '@/app/services';
 import { User } from '@/app/types/users';
 import { useQuery } from '@tanstack/react-query';
@@ -19,6 +21,7 @@ const useUser = () => {
     }
   );
   useEffect(() => {
+    console.log(user);
     if (!user) userLocalStorage.removeUser();
     else userLocalStorage.saveUser(user);
   }, [user]);

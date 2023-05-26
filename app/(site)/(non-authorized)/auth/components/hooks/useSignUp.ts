@@ -4,7 +4,12 @@ import { EUserRole } from '@/app/types/users';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-const useSignUp = (email: string, password: string, role: EUserRole) => {
+const useSignUp = (
+  email: string,
+  password: string,
+  role: EUserRole,
+  fullName: string
+) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { mutate: signUp } = useMutation(
@@ -13,6 +18,7 @@ const useSignUp = (email: string, password: string, role: EUserRole) => {
         email,
         password,
         role,
+        fullName,
       }),
     {
       onSuccess: (data) => {

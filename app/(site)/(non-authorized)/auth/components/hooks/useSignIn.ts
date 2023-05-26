@@ -10,7 +10,7 @@ const useSignIn = (email: string, password: string) => {
     () => userService.login({ email, password }),
     {
       onSuccess: (data) => {
-        queryClient.setQueriesData(['currentUser'], data);
+        queryClient.setQueryData(['currentUser'], data);
         router.push(HOME_ROUTE);
       },
     }

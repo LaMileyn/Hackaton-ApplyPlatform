@@ -4,7 +4,7 @@ import Link from 'next/link';
 import cn from 'classnames';
 
 const RouteItem: FC<RouteItemProps> = ({
-  route: { Icon, label, link, isActive },
+  route: { Icon, label, link, isActive, onClick },
 }) => {
   return (
     <li
@@ -13,10 +13,12 @@ const RouteItem: FC<RouteItemProps> = ({
         isActive ? 'text-primary-500' : 'text-system-600'
       )}
     >
-      <Link className="flex gap-[17px] items-center" href={link}>
-        <Icon className="w-[20px] h-[20px]" />
-        {label}
-      </Link>
+      <div onClick={onClick ?? undefined}>
+        <Link className="flex gap-[17px] items-center" href={link}>
+          <Icon className="w-[20px] h-[20px]" />
+          {label}
+        </Link>
+      </div>
     </li>
   );
 };

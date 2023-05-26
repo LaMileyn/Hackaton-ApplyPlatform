@@ -2,12 +2,14 @@
 
 import Image from 'next/image';
 import React, { FC } from 'react';
-import RouteItem from './components/RouteItem';
 import RoutesList from './components/RoutesList';
 import useRoutes from '@/app/hooks/useRoutes/useRoutes';
+import useUser from '@/app/hooks/useUser/useUser';
 
 const SideBar: FC = () => {
+  const user = useUser();
   const { bottomRoutes, mainRoutes } = useRoutes();
+
   return (
     <aside
       className="h-screen 

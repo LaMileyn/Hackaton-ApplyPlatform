@@ -14,5 +14,5 @@ export type User = {
   role: EUserRole;
 } & BaseModel;
 
-export type CreateUser = Pick<User, 'password' | 'role' | 'email'>;
+export type CreateUser = Pick<User, 'password' | 'role' | 'email' | 'fullName'>;
 export type AuthUser = Pick<User, 'password' | 'email'>;
