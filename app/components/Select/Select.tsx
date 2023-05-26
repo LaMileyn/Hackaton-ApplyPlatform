@@ -32,18 +32,18 @@ function Select<T extends OptionValue>(props: SelectProps<T>) {
         ref={ref}
         onClick={handleContainerClick}
         className="
-    rounded
-    bg-system-100
-    px-3
-    py-5
-    border-2
-    relative
-    flex items-center
-    justify-between
-    border-system-300-b
-  "
+        rounded
+        bg-system-100
+        px-3
+        py-5
+        border-2
+        relative
+        flex items-center
+        justify-between
+        border-system-300-b
+        "
       >
-        <div className="text-sm text-system-600">
+        <div className="text-sm text-system-600 select-none">
           {selected?.title ?? placeholder}
         </div>
         <div className={cn('transition ml-1', isOpen && 'rotate-180')}>
@@ -53,8 +53,8 @@ function Select<T extends OptionValue>(props: SelectProps<T>) {
         {isOpen && (
           <ul
             className="
-        absolute rounded p-2 top-full left-0 
-        bg-system-100 mt-2 w-full z-50 shadow-md"
+            absolute rounded p-2 top-full left-0 
+          bg-system-100 mt-2 w-full z-50 shadow-md"
           >
             {options.map((option) => (
               <OptionItem option={option} onClick={handleOptionClick} />
