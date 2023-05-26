@@ -1,22 +1,21 @@
 'use client';
 
-import VacancyItem from '@/app/components/VacancyItem/VacancyItem';
+import { Card } from '@/app/components';
 import React, { FC } from 'react';
 
 const VacanciesList: FC = () => {
   return (
-    <ul>
+    <div>
       {[...Array(5)].map((vacancy, i) => (
-        <VacancyItem
+        <Card
           key={i}
           company="Vkontakte"
           isCandidate={true}
           title="Middle IOS Разработчик"
-          vacancieType="vacancy"
           description="Lorem Ipsum d is a fish and therefore Lorem Ipsum d is a fish and therefore"
         />
       ))}
-    </ul>
+    </div>
   );
 };
 

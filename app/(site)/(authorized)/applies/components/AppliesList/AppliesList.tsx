@@ -2,7 +2,7 @@
 
 import React, { FC, useCallback } from 'react';
 import { AppliesListProps } from './types';
-import VacancyItem from '@/app/components/VacancyItem/VacancyItem';
+import { Card } from '@/app/components';
 
 const AppliesList: FC<AppliesListProps> = ({ applies, openInfoBar }) => {
   const handleInfoBarOpen = useCallback(() => {
@@ -10,20 +10,19 @@ const AppliesList: FC<AppliesListProps> = ({ applies, openInfoBar }) => {
   }, []);
 
   return (
-    <ul>
+    <div>
       {applies.map((applie) => (
-        <VacancyItem
+        <Card
           onClick={handleInfoBarOpen}
           key={applie.id}
           company="Совккомбанк"
           description="Увидение того самого"
           title="MiddleFrontendEngeniier"
           isCandidate={true}
-          vacancieType="apply"
-          status="Отклонено"
+          applyStatus={applie.status}
         />
       ))}
-    </ul>
+    </div>
   );
 };
 

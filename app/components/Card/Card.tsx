@@ -15,13 +15,16 @@ const Card: FC<CardProps> = ({
   onClick,
   vacancyStatus,
 }) => {
+  console.log(vacancyStatus);
   return (
     <div
       className="p-4 bg-system-100 mb-3 rounded cursor-pointer"
       onClick={onClick ?? undefined}
     >
       <div className="flex items-center justify-between">
-        <div className="mb-3 text-primary-500 text-xl">{title}</div>
+        <div className="mb-3 text-primary-500 text-xl hover:underline">
+          {title}
+        </div>
         {isCandidate && applyStatus && mode === 'normal' && (
           <Status
             text={applieStatic[applyStatus].text}

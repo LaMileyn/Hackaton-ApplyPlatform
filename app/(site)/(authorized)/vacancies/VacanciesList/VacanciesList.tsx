@@ -2,22 +2,23 @@
 
 import React, { FC } from 'react';
 import { VacanciesListProps } from './types';
-import VacancyItem from '../../../../components/VacancyItem/VacancyItem';
+import { Card } from '@/app/components';
 
 const VacanciesList: FC<VacanciesListProps> = ({ vacancies }) => {
   return (
-    <ul className="flex-1">
+    <div className="flex-1">
       {vacancies.map((vacancy) => (
-        <VacancyItem
+        <Card
           key={vacancy.id}
-          {...vacancy}
+          company={vacancy.company}
+          title={vacancy.title}
+          description={vacancy.description}
           isCandidate={false}
-          vacancieType="vacancy"
-          status="Поиск"
+          vacancyStatus={vacancy.status}
           onClick={() => {}}
         />
       ))}
-    </ul>
+    </div>
   );
 };
 

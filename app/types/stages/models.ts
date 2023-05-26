@@ -1,8 +1,8 @@
 import { BaseModel } from '../common/models';
 
 export enum EStageType {
-  TEST = 0,
-  CALL = 1,
+  TEST = 1,
+  CALL = 2,
 }
 export type Stage = {
   type: EStageType;

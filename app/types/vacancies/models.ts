@@ -1,23 +1,14 @@
 import { BaseModel } from '../common/models';
 
-// export type Vacancy = {
-//   id: string;
-//   title: string;
-//   company: string;
-//   description: string;
-//   status?: string;
-//   infoBlocks: VacancyInfoBlock[];
-// };
-
 export type VacancyInfoBlock = {
   title: string;
   text: string;
 };
 
 export enum EVacancyStatus {
-  NEW = 0,
-  SEARCH = 1,
-  INTERVIEW = 2,
+  NEW = 1,
+  SEARCH = 2,
+  INTERVIEW = 3,
 }
 export type Vacancy = {
   title: string;

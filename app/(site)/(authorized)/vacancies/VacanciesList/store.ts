@@ -1,32 +1,32 @@
 import { generateUuid } from '@/app/helpers';
-import { Vacancy } from '@/app/types/vacancies';
+import { EVacancyStatus, Vacancy } from '@/app/types/vacancies';
 
 export const fakeVacancies: Vacancy[] = [
   {
-    id: generateUuid(),
+    id: 1,
     company: 'Оскорп',
-    infoBlocks: [],
+    status: EVacancyStatus.INTERVIEW,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Middle frontend engineer',
   },
   {
-    id: generateUuid(),
+    id: 2,
     company: 'Майкрософт',
-    infoBlocks: [],
+    status: EVacancyStatus.NEW,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Junior frontend',
   },
   {
-    id: generateUuid(),
+    id: 3,
     company: 'Одноклассники',
-    infoBlocks: [],
+    status: EVacancyStatus.SEARCH,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Middle frontend engineer',
   },
   {
-    id: generateUuid(),
+    id: 4,
     company: 'Vk',
-    infoBlocks: [],
+    status: EVacancyStatus.INTERVIEW,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Senior/Middle frontend engineer',
   },
