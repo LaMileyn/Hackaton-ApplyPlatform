@@ -14,7 +14,7 @@ const ResumeBody: FC<ResumeBodyProps> = ({ blocks }) => {
           Напишите сопроводительное сообщение о себе в несколько строк
         </p>
       </section>
-      <BlocksList blocks={blocks} />
+      <BlocksList blocks={[]} />
     </div>
   );
 };

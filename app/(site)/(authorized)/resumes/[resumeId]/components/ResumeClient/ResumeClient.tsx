@@ -13,7 +13,7 @@ const ResumeClient: FC<ResumeClientProps> = ({ resume: initialResume }) => {
   return (
     <div>
       <ResumeHeader isOwner={isOwner} />
-      <ResumeBody isOwner={isOwner} blocks={resumeInfo.blocks} />
+      <ResumeBody isOwner={isOwner} blocks={[]} />
     </div>
   );
 };
