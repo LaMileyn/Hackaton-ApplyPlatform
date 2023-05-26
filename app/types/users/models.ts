@@ -1,4 +1,5 @@
 import { BaseModel } from '../common/models';
+import { Resume } from '../resumes';
 
 export enum EUserRole {
   CANDIDATE = 0,
@@ -13,6 +14,11 @@ export type User = {
   email: string;
   role: EUserRole;
 } & BaseModel;
+
+export type UserWithResume = {
+  resume: Resume
+} & User;
+
 
 export type CreateUser = Pick<User, 'password' | 'role' | 'email' | 'fullName'>;
 export type AuthUser = Pick<User, 'password' | 'email'>;

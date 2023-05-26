@@ -17,15 +17,13 @@ const privateRoutes = [
   TESTS_ROUTE,
 ];
 export function middleware(request: NextRequest) {
-  const { cookies } = request;
-
-  const url = request.url;
-  const token = cookies.get(USER_COOKIES_KEY);
-
-  if (url.includes(AUTH_ROUTE)) {
-    if (token) {
-      console.log(url);
-      return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
-    }
-  }
+  // const { cookies } = request;
+  // const url = request.url;
+  // const token = cookies.get('USER');
+  // if (url.includes(AUTH_ROUTE)) {
+  //   if (token) {
+  //     console.log(url);
+  //     return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
+  //   }
+  // }
 }

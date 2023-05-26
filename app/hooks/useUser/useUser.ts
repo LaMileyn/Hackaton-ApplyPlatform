@@ -1,5 +1,3 @@
-'use client;';
-
 import { userService } from '@/app/services';
 import { User } from '@/app/types/users';
 import { useQuery } from '@tanstack/react-query';

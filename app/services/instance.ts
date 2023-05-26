@@ -1,11 +1,13 @@
 import axios from 'axios';
+import { getUser } from '../hooks/useUser/helpers';
 
+export const BASE_URL = 'http://158.160.34.74:8080';
 export const $api = axios.create({
-  baseURL: 'http://158.160.34.74:8080/',
+  baseURL: BASE_URL + '/api/',
 });
 
 $api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  config.headers.Authorization = token;
+  const token = getUser()?.id;
+  config.headers.Authorization = '123';
   return config;
 });

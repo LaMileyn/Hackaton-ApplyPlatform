@@ -1,4 +1,5 @@
 import { BaseModel } from '../common/models';
+import { UserWithResume } from '../users';
 import { Vacancy } from '../vacancies';
 
 export enum EApplieStatus {
@@ -13,4 +14,8 @@ export type Applie = {
 
 export type ApplieWithVacancy = {
   vacancy: Vacancy;
+} & Applie;
+
+export type ApplieWithUser = {
+  user: UserWithResume;
 } & Applie;
