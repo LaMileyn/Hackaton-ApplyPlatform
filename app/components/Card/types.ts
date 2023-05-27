@@ -3,7 +3,7 @@ import { EVacancyStatus, Vacancy } from '@/app/types/vacancies';
 
 export type CardProps = {
   title: string;
-  company: string;
+  company?: string;
   description?: string;
   mode?: CardMode;
   onClick?: () => void;

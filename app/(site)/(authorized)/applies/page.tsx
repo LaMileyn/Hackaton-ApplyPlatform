@@ -4,7 +4,6 @@ import { Container, SidebarInfo } from '@/app/components';
 import AppliesList from './components/AppliesList';
 import { Applie, ApplieWithVacancy, EApplieStatus } from '@/app/types/applies';
 import { useState } from 'react';
-import ApplyInfo from './components/ApplyInfo';
 import { EVacancyStatus } from '@/app/types/vacancies';
 
 const mockData: ApplieWithVacancy[] = [
@@ -43,7 +42,14 @@ const AppliesPage = () => {
         <h1 className="text-4xl text-primary-500 mb-4">Отклики</h1>
         <AppliesList applies={mockData} openInfoBar={setIsOpen} />
       </Container>
-      <ApplyInfo isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarInfo
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        stages={[]}
+        title="Middle iOS разработчик"
+        fromForm={false}
+        subtitle="Совкомбанк"
+      />
     </div>
   );
 };

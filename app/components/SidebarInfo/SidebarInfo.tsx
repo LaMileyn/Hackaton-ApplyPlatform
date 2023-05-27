@@ -5,11 +5,31 @@ import { SidebarInfoProps } from './types';
 import cn from 'classnames';
 import { useClickOutside } from '@/app/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
+import { VscChromeClose } from 'react-icons/vsc';
+import TextLink from '../TextLink/TextLink';
+import Heading from '../Heading/Heading';
+import useUser from '@/app/hooks/useUser/useUser';
+import Button from '../Button/Button';
+import { EUserRole } from '@/app/types/users';
+import StagesList from './components/StagesList/StagesList';
 
-const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, children }) => {
+const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, fromForm }) => {
   const ref = useClickOutside<HTMLDivElement>(() => {
     setIsOpen(false);
   });
+
+  const headingRight = (
+    <div className="flex gap-3">
+      {fromForm ? (
+        <>
+          <Button variant="secondary">Отказ</Button>
+          <Button>Cогласие</Button>
+        </>
+      ) : (
+        <Button variant="secondary">Отказ</Button>
+      )}
+    </div>
+  );
 
   return (
     <AnimatePresence>
@@ -23,13 +43,41 @@ const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, children }) => {
           <div className={cn('absolute inset-0 bg-system-900 opacity-30')} />
           <motion.div
             ref={ref}
-            className="transition relative ml-auto h-full md:w-[700px] z-50 bg-system-200 shadow-sm"
+            className="transition relative ml-auto h-full md:w-[800px] z-50 bg-system-200 shadow-sm"
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: '0' }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ ease: 'linear' }}
           >
-            {children}
+            <div className="p-6">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex gap-5">
+                  {fromForm && (
+                    <div className="w-[200px] h-[200px] bg-system-300-b rounded" />
+                  )}
+                  <div>
+                    <div className="text-4xl text-primary-500">
+                      Middle IOS разработчик
+                    </div>
+                    <div className="text-xl font-medium text-system-900 mt-4 mb-16">
+                      Совкомбанк
+                    </div>
+                  </div>
+                </div>
+                <VscChromeClose
+                  onClick={() => setIsOpen(false)}
+                  className="cursor-pointer"
+                  size={30}
+                  color="grey"
+                />
+              </div>
+              <div className="flex gap-3 items-center mb-10 mt-6">
+                <TextLink href={'/'} text="Открыть вакансию" hovered />
+                <TextLink href={'/'} text="Связаться с рекрутером" hovered />
+              </div>
+              <Heading title="Этапы собеседования" addonAfter={headingRight} />
+              <StagesList />
+            </div>
           </motion.div>
         </motion.div>
       )}

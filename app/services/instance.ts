@@ -8,6 +8,7 @@ export const $api = axios.create({
 
 $api.interceptors.request.use((config) => {
   const token = getUser()?.id;
-  config.headers.Authorization = '123';
+  console.log(token);
+  config.headers.Authorization = '1';
   return config;
 });

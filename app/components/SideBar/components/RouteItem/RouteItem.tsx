@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC } from 'react';
 import { RouteItemProps } from './types';
 import Link from 'next/link';

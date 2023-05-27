@@ -10,12 +10,15 @@ import {
 } from '@/app/const/appRoutes';
 import { RxDashboard } from 'react-icons/rx';
 import useSignOut from '../useSignOut/useSignOut';
+import useUser from '../useUser/useUser';
+import { EUserRole } from '@/app/types/users';
 
 const useRoutes = () => {
   const signOut = useSignOut();
   const pathname = usePathname();
+  const user = useUser();
 
-  const isRecruter = false;
+  const isRecruter = user?.role === EUserRole.RECRUTER;
   const checkActive = (route: string) => pathname === route;
 
   let mainRoutes = useMemo<Route[]>(

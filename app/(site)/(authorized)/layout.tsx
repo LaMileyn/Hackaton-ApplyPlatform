@@ -13,7 +13,7 @@ export default function AuthorizedLayout({
   return (
     <div className="flex relative">
       <SideBar />
-      <div className="w-full">{children}</div>
+      <div className="w-full ml-[280px]">{children}</div>
     </div>
   );
 }
