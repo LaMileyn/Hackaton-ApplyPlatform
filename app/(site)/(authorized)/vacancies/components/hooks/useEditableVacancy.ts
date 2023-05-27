@@ -5,7 +5,7 @@ import {
   VacancyTemplate,
   VacancyWithTemplates,
 } from '@/app/types/vacancies';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -15,6 +15,7 @@ type hookState = {
 };
 
 const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const [state, setState] = useState<hookState>({
     isEditing: false,
@@ -30,6 +31,15 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     {
       onSuccess: (data) => {
         router.push(`${VACANCIES_ROUTE}/${data.ID}`);
+      },
+    }
+  );
+  const { mutate: updateVacancy } = useMutation(
+    vacanciesService.updateVacancy,
+    {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries(['vacancy', data.ID]);
+        setState((prev) => ({ ...prev, isEditing: false }));
       },
     }
   );
@@ -76,6 +86,11 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
   const handleVacancyCreate = useCallback(() => {
     if (!state.vacancy) return;
     createVacancy(state.vacancy);
+  }, [state]);
+
+  const handleVacancyUpdate = useCallback(() => {
+    if (!state.vacancy) return;
+    updateVacancy(state.vacancy);
   }, [state]);
 
   const cancelChanges = useCallback(() => {
@@ -150,6 +165,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     deleteBlock: handleDeleteTemplate,
     isEditing: state.isEditing,
     createVacancy: handleVacancyCreate,
+    updateVacancy: handleVacancyUpdate,
     data: state.vacancy,
     cancelChanges,
     setEditMode,

@@ -9,7 +9,7 @@ const VacancyPage = () => {
 
   return (
     <ClientOnly>
-      <VacanciesTemplate id={+id} />
+      <VacanciesTemplate ID={+id} />
     </ClientOnly>
   );
 };
