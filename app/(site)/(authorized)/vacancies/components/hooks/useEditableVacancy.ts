@@ -1,10 +1,13 @@
-import { generateUuid } from '@/app/helpers';
+import { VACANCIES_ROUTE } from '@/app/const/appRoutes';
+import { vacanciesService } from '@/app/services';
 import {
   VacancyInfoBlock,
   VacancyTemplate,
   VacancyWithTemplates,
 } from '@/app/types/vacancies';
-import { useCallback, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
 type hookState = {
   isEditing: boolean;
@@ -12,10 +15,24 @@ type hookState = {
 };
 
 const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
+  const router = useRouter();
   const [state, setState] = useState<hookState>({
     isEditing: false,
     vacancy: data,
   });
+
+  useEffect(() => {
+    setState((prev) => ({ ...prev, vacancy: data }));
+  }, [data]);
+
+  const { mutate: createVacancy } = useMutation(
+    vacanciesService.createVacancy,
+    {
+      onSuccess: (data) => {
+        router.push(`${VACANCIES_ROUTE}/${data.id}`);
+      },
+    }
+  );
 
   const handleUpdateTitle = useCallback(
     (title: string) => {
@@ -30,13 +47,6 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     [state]
   );
 
-  const cancelChanges = useCallback(() => {
-    setState((prev) => ({
-      ...prev,
-      vacancy: data,
-    }));
-  }, []);
-
   const handleUpdateDescription = useCallback(
     (newDesc: string) => {
       if (!state.vacancy) return;
@@ -48,6 +58,32 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     },
     [state]
   );
+
+  //TODO сделать общую функию для title,company,...
+
+  const handleUpdateCompany = useCallback(
+    (newCompany: string) => {
+      if (!state.vacancy) return;
+      const updatedVacancy = {
+        ...state.vacancy,
+        company: newCompany,
+      };
+      setState((prevState) => ({ ...prevState, vacancy: updatedVacancy }));
+    },
+    [state]
+  );
+
+  const handleVacancyCreate = useCallback(() => {
+    if (!state.vacancy) return;
+    createVacancy(state.vacancy);
+  }, [state]);
+
+  const cancelChanges = useCallback(() => {
+    setState((prev) => ({
+      vacancy: data,
+      isEditing: false,
+    }));
+  }, []);
 
   const handleUpdateTemplate = useCallback(
     (block: VacancyTemplate) => {
@@ -105,13 +141,17 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     setState((prev) => ({ ...prev, isEditing: mode }));
   }, []);
 
+  console.log(state);
+
   return {
     updateTitle: handleUpdateTitle,
     updateDescription: handleUpdateDescription,
     updateBlock: handleUpdateTemplate,
+    updateCompany: handleUpdateCompany,
     addBlock: handleAddTemplate,
     deleteBlock: handleDeleteTemplate,
     isEditing: state.isEditing,
+    createVacancy: handleVacancyCreate,
     data: state.vacancy,
     cancelChanges,
     setEditMode,
