@@ -4,8 +4,6 @@ import {
   ResumeStroke,
 } from '@/app/types/resumes/models';
 
-export type BlockListProps = {
-  blocks: ResumeBlockFull[];
-};
+export type BlockListProps = {};
 
 export type ResumeStokeKeys = keyof ResumeStroke;
