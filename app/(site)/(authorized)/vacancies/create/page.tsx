@@ -4,7 +4,7 @@ import VacanciesTemplate from '../components/VacancyTemplate/VacancyTemplate';
 const CreateVacancyPage = () => {
   return (
     <ClientOnly>
-      <VacanciesTemplate />;
+      <VacanciesTemplate />
     </ClientOnly>
   );
 };

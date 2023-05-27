@@ -3,10 +3,17 @@
 import { Button, Container } from '@/app/components';
 import UsersTable from './components/UsersTable/UsersTable';
 import { IoIosArrowBack } from 'react-icons/io';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { vacanciesService } from '@/app/services';
 
 const VacancyCandidatesPage = () => {
   const router = useRouter();
+  const { id } = useParams();
+
+  const { data } = useQuery(['vacancy_candidates'], () =>
+    vacanciesService.getVacancyApplies(+id)
+  );
 
   return (
     <Container>
@@ -35,7 +42,7 @@ const VacancyCandidatesPage = () => {
         </div>
       </div>
 
-      <UsersTable data={[]} />
+      <UsersTable data={data || []} />
     </Container>
   );
 };

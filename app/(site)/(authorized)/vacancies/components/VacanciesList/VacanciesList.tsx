@@ -21,7 +21,7 @@ const VacanciesList: FC<VacanciesListProps> = () => {
   );
   return (
     <div className="flex-1">
-      {fakeVacancies?.map((vacancy) => (
+      {vacancies?.map((vacancy) => (
         <Card
           key={vacancy.ID}
           company={vacancy.company}

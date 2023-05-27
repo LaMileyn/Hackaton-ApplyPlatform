@@ -18,12 +18,13 @@ import VacancyBlockList from './../VacancyBlocksList';
 import { mockTemplates } from './store';
 import { FC, useEffect } from 'react';
 import { VacancyTemplateProps } from './types';
-import { useQuery } from '@tanstack/react-query';
-import { vacanciesService } from '@/app/services';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { appliesService, vacanciesService } from '@/app/services';
 import { RiDeleteBack2Fill, RiDeleteBin2Fill } from 'react-icons/ri';
 
 const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const user = useUser();
 
@@ -36,6 +37,22 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
       enabled: !!ID,
     }
   );
+  const { data: isApplied, refetch } = useQuery(
+    ['vacancy status', ID],
+    () => vacanciesService.checkApplyButtonStatus(ID as any),
+    {
+      enabled: !!ID,
+    }
+  );
+
+  const { mutate: apply } = useMutation(appliesService.applyToVacancy, {
+    onMutate: (newStatus) => {
+      queryClient.setQueryData(['vacancy status', ID], true);
+    },
+    onError: async () => {
+      queryClient.setQueryData(['vacancy status', ID], false);
+    },
+  });
 
   const {
     data: vacancyData,
@@ -49,18 +66,14 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     updateCompany,
     setEditMode,
     createVacancy,
+    updateVacancy,
   } = useEditableVacancy(ID ? data : mockTemplates);
-  // const { data: isApplied } = useQuery(['vacancy', id], () =>
-  //   vacanciesService.checkApplyButtonStatus(+id)
-  // );
 
   useEffect(() => {
     if (!ID) {
       setEditMode(true);
     }
   }, [ID]);
-
-  const isApplied = false;
 
   const handleCancel = () => {
     if (ID) {
@@ -72,9 +85,15 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
 
   const handleSaveCreateClick = () => {
     if (ID) {
-      // createVacancy;
+      updateVacancy();
     } else {
       createVacancy();
+    }
+  };
+
+  const handleApply = () => {
+    if (ID) {
+      apply(ID);
     }
   };
 
@@ -86,7 +105,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
             Редактировать
           </Button>
           <Button
-            onClick={() => router.push(`${VACANCIES_ROUTE}/${3}/candidates`)}
+            onClick={() => router.push(`${VACANCIES_ROUTE}/${ID}/candidates`)}
           >
             Кандидаты
           </Button>
