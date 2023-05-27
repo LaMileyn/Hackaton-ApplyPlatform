@@ -1,4 +1,4 @@
-import { SideBar } from '@/app/components';
+import { ClientOnly, SideBar } from '@/app/components';
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,8 +12,10 @@ export default function AuthorizedLayout({
 }) {
   return (
     <div className="flex relative">
-      <SideBar />
-      <div className="w-full">{children}</div>
+      <ClientOnly>
+        <SideBar />
+      </ClientOnly>
+      <div className="w-full ml-[280px]">{children}</div>
     </div>
   );
 }

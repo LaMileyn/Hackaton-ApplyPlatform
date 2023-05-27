@@ -23,13 +23,13 @@ const VacanciesList: FC<VacanciesListProps> = () => {
     <div className="flex-1">
       {fakeVacancies?.map((vacancy) => (
         <Card
-          key={vacancy.id}
+          key={vacancy.ID}
           company={vacancy.company}
           title={vacancy.title}
           description={vacancy.description}
           isCandidate={user?.role === EUserRole.CANDIDATE}
           vacancyStatus={vacancy.status}
-          onClick={() => router.push(`${VACANCIES_ROUTE}/${vacancy.id}`)}
+          onClick={() => router.push(`${VACANCIES_ROUTE}/${vacancy.ID}`)}
         />
       ))}
     </div>

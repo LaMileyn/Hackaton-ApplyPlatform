@@ -5,3 +5,8 @@
 body {
   @apply bg-system-200 overflow-x-hidden;
 }
+
+.editablePlaceholder[placeholder]:empty:before {
+  content: attr(placeholder);
+  opacity: 0.6;
+}

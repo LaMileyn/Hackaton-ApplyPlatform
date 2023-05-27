@@ -1,4 +1,4 @@
 export type HeadingProps = {
-  title: string;
+  title: string | React.ReactNode;
   addonAfter?: React.ReactNode;
 };

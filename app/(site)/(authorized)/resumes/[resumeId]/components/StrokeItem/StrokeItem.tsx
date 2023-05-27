@@ -38,7 +38,7 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke, removeStroke }) => {
         </div>
       </div>
       <RiDeleteBin5Line
-        onClick={() => removeStroke(blockId, stroke.id)}
+        onClick={() => removeStroke(blockId, stroke.ID)}
         className="cursor-pointer"
         color="gray"
         size={24}

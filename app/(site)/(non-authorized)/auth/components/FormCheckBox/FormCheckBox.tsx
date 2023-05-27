@@ -7,7 +7,6 @@ const FormCheckBox: FC = () => {
       <input
         className="h-[1rem] w-[1rem]"
         type="checkbox"
-        checked={true}
         onChange={() => {}}
       />
       <span className="ml-3">

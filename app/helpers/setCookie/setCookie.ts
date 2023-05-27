@@ -7,6 +7,11 @@ interface IObject<T = unknown> {
 const setCookie = (name: string, value: string, options: IObject<any> = {}) => {
   if (!canUseDOM) return;
 
+  options = {
+    path: '/',
+    ...options,
+  };
+
   let expires = options.expires;
 
   if (typeof expires === 'number' && expires) {

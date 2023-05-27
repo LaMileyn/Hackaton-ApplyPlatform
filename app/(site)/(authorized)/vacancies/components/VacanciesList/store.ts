@@ -3,28 +3,28 @@ import { EVacancyStatus, Vacancy } from '@/app/types/vacancies';
 
 export const fakeVacancies: Vacancy[] = [
   {
-    id: 1,
+    ID: 1,
     company: 'Оскорп',
     status: EVacancyStatus.INTERVIEW,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Middle frontend engineer',
   },
   {
-    id: 2,
+    ID: 2,
     company: 'Майкрософт',
     status: EVacancyStatus.NEW,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Junior frontend',
   },
   {
-    id: 3,
+    ID: 3,
     company: 'Одноклассники',
     status: EVacancyStatus.SEARCH,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
     title: 'Middle frontend engineer',
   },
   {
-    id: 4,
+    ID: 4,
     company: 'Vk',
     status: EVacancyStatus.INTERVIEW,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
