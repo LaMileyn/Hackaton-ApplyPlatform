@@ -14,7 +14,7 @@ const AppliesList: FC<AppliesListProps> = ({ applies, openInfoBar }) => {
       {applies.map((applie) => (
         <Card
           onClick={handleInfoBarOpen}
-          key={applie.id}
+          key={applie.ID}
           company="Совккомбанк"
           description="Увидение того самого"
           title="MiddleFrontendEngeniier"

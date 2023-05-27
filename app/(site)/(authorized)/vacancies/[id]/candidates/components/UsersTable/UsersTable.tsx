@@ -33,7 +33,7 @@ const UsersTable: FC<UsersTableProps> = ({ data }) => {
               <td className="py-3 px-7">
                 <TextLink
                   text="Открыть"
-                  href={RESUMES_ROUTE + '/' + apply.user.resume.id}
+                  href={RESUMES_ROUTE + '/' + apply.user.resume.ID}
                   hovered={true}
                 />
               </td>

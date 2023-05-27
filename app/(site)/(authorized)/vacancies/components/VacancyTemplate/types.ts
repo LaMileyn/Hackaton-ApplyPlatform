@@ -1,3 +1,3 @@
 export type VacancyTemplateProps = {
-  id?: number;
+  ID?: number;
 };

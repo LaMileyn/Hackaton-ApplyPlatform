@@ -8,11 +8,11 @@ import { EVacancyStatus } from '@/app/types/vacancies';
 
 const mockData: ApplieWithVacancy[] = [
   {
-    id: 1,
+    ID: 1,
     comment: 'Mobile Frontend Developer',
     status: EApplieStatus.INVITE,
     vacancy: {
-      id: 1,
+      ID: 1,
       status: EVacancyStatus.INTERVIEW,
       description: 'Hello',
       title: 'Frontend Developer',
@@ -20,11 +20,11 @@ const mockData: ApplieWithVacancy[] = [
     },
   },
   {
-    id: 2,
+    ID: 2,
     comment: 'Senior Frontend Developer',
     status: EApplieStatus.INVITE,
     vacancy: {
-      id: 2,
+      ID: 2,
       status: EVacancyStatus.INTERVIEW,
       description: 'Hello',
       title: 'Frontend Developer',

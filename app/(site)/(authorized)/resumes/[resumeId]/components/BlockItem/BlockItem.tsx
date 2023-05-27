@@ -15,7 +15,7 @@ const BlockItem: FC<BlockItemProps> = ({ block, removeStroke, addStroke }) => {
           <Button
             className="opacity-0 transition group-hover:opacity-100"
             variant="secondary"
-            onClick={() => addStroke(block.id)}
+            onClick={() => addStroke(block.ID)}
             iconLeft={<IoMdAdd />}
           >
             Добавить строку
@@ -25,7 +25,7 @@ const BlockItem: FC<BlockItemProps> = ({ block, removeStroke, addStroke }) => {
       <StrokesList
         strokes={block.strokes}
         removeStroke={removeStroke}
-        blockId={block.id}
+        blockId={block.ID}
       />
     </li>
   );

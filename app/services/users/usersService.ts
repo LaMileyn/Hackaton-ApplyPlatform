@@ -13,7 +13,7 @@ class UserService {
   }
   async getUser(user: User | null | undefined) {
     if (!user) return null;
-    const { data } = await $api.get<User>(`/users/${user.id}`);
+    const { data } = await $api.get<User>(`/users/${user.ID}`);
     return data;
   }
 }

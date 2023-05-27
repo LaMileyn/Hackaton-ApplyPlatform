@@ -15,14 +15,14 @@ const BlocksList: FC<BlockListProps> = ({ blocks: initialBlocks }) => {
   }, []);
   const handleRemoveBlock = useCallback((blockId: number) => {
     setBlocks((prevBlocks) =>
-      prevBlocks.filter((prevBlock) => prevBlock.id !== blockId)
+      prevBlocks.filter((prevBlock) => prevBlock.ID !== blockId)
     );
   }, []);
 
   const handleAddStroke = useCallback((blockId: number) => {
     setBlocks((prevBlocks) =>
       prevBlocks.map((prevBlock) =>
-        prevBlock.id === blockId
+        prevBlock.ID === blockId
           ? { ...prevBlock, strokes: [...prevBlock.strokes, initialStroke] }
           : prevBlock
       )
@@ -41,11 +41,11 @@ const BlocksList: FC<BlockListProps> = ({ blocks: initialBlocks }) => {
       setBlocks((prevBlocks) =>
         prevBlocks
           .map((prevBlock) => {
-            if (prevBlock.id !== blockId) {
+            if (prevBlock.ID !== blockId) {
               return prevBlock;
             }
             const newStrokes = prevBlock.strokes.filter(
-              (stroke) => stroke.id !== strokeId
+              (stroke) => stroke.ID !== strokeId
             );
 
             return { ...prevBlock, strokes: newStrokes };
@@ -61,7 +61,7 @@ const BlocksList: FC<BlockListProps> = ({ blocks: initialBlocks }) => {
       <ul>
         {blocks.map((block) => (
           <BlockItem
-            key={block.id}
+            key={block.ID}
             block={block}
             addStroke={handleAddStroke}
             removeStroke={handleRemoveStroke}

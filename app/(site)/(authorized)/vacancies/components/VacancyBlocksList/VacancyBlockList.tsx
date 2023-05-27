@@ -51,7 +51,7 @@ const VacancyBlockList: FC<VacancyBlockListProps> = ({
             </div>
             {isEditMode && (
               <RiDeleteBin5Line
-                onClick={() => deleteBlock(template.id)}
+                onClick={() => deleteBlock(template.ID)}
                 className="cursor-pointer group-hover:opacity-100 opacity-0 transition"
                 color="gray"
                 size={24}

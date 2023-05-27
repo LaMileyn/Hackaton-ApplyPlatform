@@ -29,7 +29,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     vacanciesService.createVacancy,
     {
       onSuccess: (data) => {
-        router.push(`${VACANCIES_ROUTE}/${data.id}`);
+        router.push(`${VACANCIES_ROUTE}/${data.ID}`);
       },
     }
   );
@@ -90,7 +90,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
       if (!state.vacancy) return;
 
       const updatedTemplates = state.vacancy?.templates.map((template) =>
-        template.id === block.id ? block : template
+        template.ID === block.ID ? block : template
       );
 
       const updatedVacancy = {
@@ -104,10 +104,10 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
   );
 
   const handleDeleteTemplate = useCallback(
-    (id: number) => {
+    (ID: number) => {
       if (!state.vacancy) return;
       const newTemplates = state.vacancy?.templates.filter(
-        (template) => template.id !== id
+        (template) => template.ID !== ID
       );
       const updatedVacancy = {
         ...state.vacancy,
@@ -125,7 +125,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
         ...state.vacancy.templates,
         {
           description: '',
-          id: new Date().valueOf(),
+          ID: new Date().valueOf(),
           title: '',
         },
       ];
@@ -140,8 +140,6 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
   const setEditMode = useCallback((mode: boolean) => {
     setState((prev) => ({ ...prev, isEditing: mode }));
   }, []);
-
-  console.log(state);
 
   return {
     updateTitle: handleUpdateTitle,

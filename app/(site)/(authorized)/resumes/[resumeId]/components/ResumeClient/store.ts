@@ -6,7 +6,7 @@ import {
 } from '@/app/types/resumes/models';
 
 export const initialStroke: ResumeStroke = {
-  id: 1,
+  ID: 1,
   dateFrom: '',
   dateTo: '',
   description: 'Паша вернель лучший',
@@ -15,18 +15,18 @@ export const initialStroke: ResumeStroke = {
 };
 
 export const initialBlock: ResumeBlockFull = {
-  id: 1,
+  ID: 1,
   title: 'Образование Данниила',
   strokes: [initialStroke],
 };
 
 export const blocksData: ResumeBlockFull[] = [
   {
-    id: 1,
+    ID: 1,
     title: 'Опыт работы',
     strokes: [
       {
-        id: 1,
+        ID: 1,
         title: 'Должность',
         subtitle: 'Организация',
         dateFrom: '',
@@ -38,11 +38,11 @@ export const blocksData: ResumeBlockFull[] = [
     ],
   },
   {
-    id: 2,
+    ID: 2,
     title: 'Образование',
     strokes: [
       {
-        id: 3,
+        ID: 3,
         title: 'Должность',
         subtitle: 'Организация',
         dateFrom: '',

@@ -15,7 +15,7 @@ const StrokesList: FC<StrokesListProps> = ({
         <StrokeItem
           stroke={stroke}
           blockId={blockId}
-          key={stroke.id}
+          key={stroke.ID}
           removeStroke={removeStroke}
         />
       ))}

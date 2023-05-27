@@ -6,16 +6,16 @@ class VacanciesService {
     const { data } = await $api.get<Vacancy[]>(`/vacancies?${queryString}`);
     return data;
   }
-  async getVacancy(id: Vacancy['id']) {
-    const { data } = await $api.get<VacancyWithTemplates>('/vacancies/' + id);
+  async getVacancy(ID: Vacancy['ID']) {
+    const { data } = await $api.get<VacancyWithTemplates>('/vacancies/' + ID);
     return data;
   }
-  async checkApplyButtonStatus(id: Vacancy['id']) {
-    const { data } = await $api.get<boolean>(`/vacancies/${id}/applyStatus`);
+  async checkApplyButtonStatus(ID: Vacancy['ID']) {
+    const { data } = await $api.get<boolean>(`/vacancies/${ID}/applyStatus`);
     return data;
   }
 
-  async createVacancy(body: Omit<VacancyWithTemplates, 'id'>) {
+  async createVacancy(body: Omit<VacancyWithTemplates, 'ID'>) {
     const { data } = await $api.post<Vacancy>('/vacancies', body);
     return data;
   }

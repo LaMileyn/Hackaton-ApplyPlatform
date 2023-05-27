@@ -22,7 +22,7 @@ import { useQuery } from '@tanstack/react-query';
 import { vacanciesService } from '@/app/services';
 import { RiDeleteBack2Fill, RiDeleteBin2Fill } from 'react-icons/ri';
 
-const VacanciesTemplate: FC<VacancyTemplateProps> = ({ id }) => {
+const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
   const router = useRouter();
 
   const user = useUser();
@@ -30,10 +30,10 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ id }) => {
   const isRecruter = user?.role === EUserRole.RECRUTER;
 
   const { data } = useQuery(
-    ['vacancy', id],
-    () => vacanciesService.getVacancy(id as any),
+    ['vacancy', ID],
+    () => vacanciesService.getVacancy(ID as any),
     {
-      enabled: !!id,
+      enabled: !!ID,
     }
   );
 
@@ -49,21 +49,21 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ id }) => {
     updateCompany,
     setEditMode,
     createVacancy,
-  } = useEditableVacancy(id ? data : mockTemplates);
+  } = useEditableVacancy(ID ? data : mockTemplates);
   // const { data: isApplied } = useQuery(['vacancy', id], () =>
   //   vacanciesService.checkApplyButtonStatus(+id)
   // );
 
   useEffect(() => {
-    if (!id) {
+    if (!ID) {
       setEditMode(true);
     }
-  }, [id]);
+  }, [ID]);
 
   const isApplied = false;
 
   const handleCancel = () => {
-    if (id) {
+    if (ID) {
       cancelChanges();
     } else {
       router.push(VACANCIES_ROUTE);
@@ -71,7 +71,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ id }) => {
   };
 
   const handleSaveCreateClick = () => {
-    if (id) {
+    if (ID) {
       // createVacancy;
     } else {
       createVacancy();
@@ -94,7 +94,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ id }) => {
       )}
       {isRecruter && isEditing && (
         <>
-          {!!id && (
+          {!!ID && (
             <Button
               variant="secondary"
               iconLeft={<RiDeleteBin2Fill color="#DA5155" />}
@@ -104,7 +104,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ id }) => {
             Отмена
           </Button>
           <Button onClick={handleSaveCreateClick}>
-            {id ? 'Сохранить' : 'Создать'}
+            {ID ? 'Сохранить' : 'Создать'}
           </Button>
         </>
       )}
