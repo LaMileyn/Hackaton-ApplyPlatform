@@ -26,7 +26,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     setState((prev) => ({ ...prev, vacancy: data }));
   }, [data]);
 
-  const { mutate: createVacancy } = useMutation(
+  const { mutate: createVacancy, isLoading: isCreating } = useMutation(
     vacanciesService.createVacancy,
     {
       onSuccess: (data) => {
@@ -34,7 +34,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
       },
     }
   );
-  const { mutate: updateVacancy } = useMutation(
+  const { mutate: updateVacancy, isLoading: isUpdating } = useMutation(
     vacanciesService.updateVacancy,
     {
       onSuccess: (data) => {
@@ -167,6 +167,7 @@ const useEditableVacancy = (data: VacancyWithTemplates | undefined) => {
     createVacancy: handleVacancyCreate,
     updateVacancy: handleVacancyUpdate,
     data: state.vacancy,
+    isDisabled: isCreating || isUpdating,
     cancelChanges,
     setEditMode,
   };

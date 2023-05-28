@@ -57,7 +57,7 @@ const TestTemplate: FC = () => {
         <Button
           variant="transparent"
           iconLeft={<IoIosArrowBack />}
-          onClick={() => router.back()}
+          onClick={() => router.push(TESTS_ROUTE)}
         >
           Назад
         </Button>

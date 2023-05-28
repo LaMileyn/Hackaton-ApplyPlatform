@@ -58,6 +58,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     setEditMode,
     createVacancy,
     updateVacancy,
+    isDisabled,
   } = useEditableVacancy(ID ? data : mockTemplates);
 
   useEffect(() => {
@@ -82,6 +83,17 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     }
   };
 
+  const { mutate: deleteVacancy, isLoading: isDeleting } = useMutation(
+    vacanciesService.deleteVacancy,
+    {
+      onSuccess: () => {
+        router.push(VACANCIES_ROUTE);
+      },
+    }
+  );
+  const handleDeleteVacancy = () => {
+    ID && !isDeleting && deleteVacancy(ID);
+  };
   const topButtons = (
     <div className="flex gap-2">
       {isRecruter && !isEditing && (
@@ -101,13 +113,14 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
           {!!ID && (
             <Button
               variant="secondary"
+              onClick={handleDeleteVacancy}
               iconLeft={<RiDeleteBin2Fill color="#DA5155" />}
             />
           )}
           <Button variant="secondary" onClick={handleCancel}>
             Отмена
           </Button>
-          <Button onClick={handleSaveCreateClick}>
+          <Button onClick={handleSaveCreateClick} disabled={isDisabled}>
             {ID ? 'Сохранить' : 'Создать'}
           </Button>
         </>

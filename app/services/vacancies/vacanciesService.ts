@@ -33,6 +33,10 @@ class VacanciesService {
     );
     return data;
   }
+
+  async deleteVacancy(id: number) {
+    return await $api.delete('/vacancies/' + id);
+  }
 }
 
 export default new VacanciesService();

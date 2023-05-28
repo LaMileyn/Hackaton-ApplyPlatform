@@ -33,6 +33,14 @@ const ResumeHeader: FC<ResumeHeaderProps> = () => {
     },
   });
 
+  const { mutate: deleteResume } = useMutation(resumersService.deleteResume, {
+    onSuccess: (resume) => {
+      queryClient.invalidateQueries(['resumes']);
+      router.push(PROFILE_ROUTE);
+      setEditMode?.(false);
+    },
+  });
+
   const handleSubmit = () => {
     if (!resumeId) {
       resume && createResume(resume);
@@ -41,6 +49,10 @@ const ResumeHeader: FC<ResumeHeaderProps> = () => {
       console.log(resume);
       resume && updateResume(resume);
     }
+  };
+
+  const handleDeleteResume = () => {
+    resume && deleteResume(resume.ID);
   };
 
   return (
@@ -81,7 +93,9 @@ const ResumeHeader: FC<ResumeHeaderProps> = () => {
             </Button>
           )}
           {resumeId && !isEditing && (
-            <Button variant="secondary">Удалить</Button>
+            <Button variant="secondary" onClick={handleDeleteResume}>
+              Удалить
+            </Button>
           )}
           <Button onClick={handleSubmit}>
             {resumeId

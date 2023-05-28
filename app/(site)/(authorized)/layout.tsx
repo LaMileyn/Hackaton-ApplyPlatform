@@ -1,6 +1,9 @@
 'use client';
 
 import { ClientOnly, SideBar } from '@/app/components';
+import { AUTH_ROUTE } from '@/app/const/appRoutes';
+import useUser from '@/app/hooks/useUser/useUser';
+import { useRouter } from 'next/navigation';
 
 export default function AuthorizedLayout({
   children,

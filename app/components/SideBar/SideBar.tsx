@@ -1,14 +1,21 @@
 'use client';
 
 import Image from 'next/image';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import RoutesList from './components/RoutesList';
 import useRoutes from '@/app/hooks/useRoutes/useRoutes';
 import useUser from '@/app/hooks/useUser/useUser';
+import { useRouter } from 'next/navigation';
+import { AUTH_ROUTE } from '@/app/const/appRoutes';
 
 const SideBar: FC = () => {
   const user = useUser();
+  const router = useRouter();
   const { bottomRoutes, mainRoutes } = useRoutes();
+
+  useEffect(() => {
+    if (!user) router.push(AUTH_ROUTE);
+  }, [user]);
 
   return (
     <aside

@@ -1,3 +1,7 @@
+import {
+  generateInitialBlock,
+  generateInitialStroke,
+} from '@/app/(site)/(authorized)/resumes/components/ResumeTemplate/helpers';
 import { ResumeBlockFull, ResumeFull, ResumeStroke } from '@/app/types/resumes';
 import {
   PropsWithChildren,
@@ -113,21 +117,8 @@ const ResumeFormContextProvider = ({ children }: PropsWithChildren) => {
 
   const addBlock = useCallback(() => {
     if (!state.resume) return;
-    const emptyBlock: ResumeBlockFull = {
-      ID: new Date().valueOf(),
-      title: '',
-      strokes: [
-        {
-          ID: new Date().valueOf(),
-          dateTo: '',
-          dateFrom: '',
-          subtitle: '',
-          title: '',
-          description: '',
-        },
-      ],
-    };
-    const updatedBlocks = [...state.resume.blocks, emptyBlock];
+
+    const updatedBlocks = [...state.resume.blocks, generateInitialBlock()];
     const updatedResume: ResumeFull = {
       ...state.resume,
       blocks: updatedBlocks,
@@ -138,19 +129,12 @@ const ResumeFormContextProvider = ({ children }: PropsWithChildren) => {
   const addStroke = useCallback(
     (blockId: number) => {
       if (!state.resume) return;
-      const emptyStroke = {
-        ID: new Date().valueOf(),
-        dateTo: '',
-        dateFrom: '',
-        subtitle: '',
-        title: '',
-        description: '',
-      };
+
       const updatedBlocks = state.resume.blocks.map((block) =>
         block.ID === blockId
           ? {
               ...block,
-              strokes: [...block.strokes, emptyStroke],
+              strokes: [...block.strokes, generateInitialStroke()],
             }
           : block
       );

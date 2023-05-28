@@ -2,9 +2,9 @@
 
 import { Button, Heading, TextLink } from '@/app/components';
 import React, { FC } from 'react';
-import VacanciesList from './components/VacanciesList';
 import { APPLIES_ROUTE, VACANCIES_ROUTE } from '@/app/const/appRoutes';
 import AppliesList from './components/AppliesList/AppliesList';
+import VacanciesList from '../VacanciesList/VacanciesList';
 
 const CandidateDashboard: FC = () => {
   return (
@@ -14,7 +14,7 @@ const CandidateDashboard: FC = () => {
           title="Вакансии"
           addonAfter={<TextLink text="Все >" href={VACANCIES_ROUTE} />}
         />
-        <VacanciesList />
+        <VacanciesList isCandidate={true} />
       </div>
       <div>
         <Heading
