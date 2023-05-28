@@ -9,7 +9,7 @@ import ContentEditable from 'react-contenteditable';
 import useUser from '@/app/hooks/useUser/useUser';
 import { useResumeContext } from '@/app/providers/resumeFormProvider/resumeFormProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { RESUMES_ROUTE } from '@/app/const/appRoutes';
+import { PROFILE_ROUTE, RESUMES_ROUTE } from '@/app/const/appRoutes';
 import resumersService from '@/app/services/resumes/resumersService';
 
 const ResumeHeader: FC<ResumeHeaderProps> = () => {
@@ -47,7 +47,7 @@ const ResumeHeader: FC<ResumeHeaderProps> = () => {
     <div>
       <div className="mb-4">
         <Button
-          onClick={() => router.back()}
+          onClick={() => router.push(PROFILE_ROUTE)}
           iconLeft={<IoIosArrowBack />}
           variant="transparent"
         >

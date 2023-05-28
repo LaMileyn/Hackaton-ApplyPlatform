@@ -12,9 +12,10 @@ import useUser from '@/app/hooks/useUser/useUser';
 import Button from '../Button/Button';
 import { EUserRole } from '@/app/types/users';
 import StagesList from './components/StagesList/StagesList';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { appliesService } from '@/app/services';
 import { RESUMES_ROUTE, VACANCIES_ROUTE } from '@/app/const/appRoutes';
+import { EApplieStatus } from '@/app/types/applies';
 
 const SidebarInfo: FC<SidebarInfoProps> = ({
   isOpen,
@@ -25,16 +26,29 @@ const SidebarInfo: FC<SidebarInfoProps> = ({
   const { data } = useQuery(['apply', id], () =>
     appliesService.getApplyInfo(id)
   );
+
+  const { mutate: changeStatus } = useMutation(
+    appliesService.changeApplyStatus
+  );
+
   const ref = useClickOutside<HTMLDivElement>(() => {
     setIsOpen(false);
   });
+
+  const handleInviteUser = () => {
+    data?.apply &&
+      changeStatus({
+        status: EApplieStatus.INVITE,
+        id: data.apply.ID,
+      });
+  };
 
   const headingRight = (
     <div className="flex gap-3">
       {fromForm ? (
         <>
           <Button variant="secondary">Отказ</Button>
-          <Button>Cогласие</Button>
+          <Button onClick={handleInviteUser}>Пригласить</Button>
         </>
       ) : (
         <Button variant="secondary">Отказ</Button>

@@ -6,8 +6,8 @@ import { Vacancy } from '../vacancies';
 
 export enum EApplieStatus {
   REJECTED = 1,
-  PROCCESS = 2,
-  INVITE = 3,
+  PROCCESS = 3,
+  INVITE = 2,
 }
 export type Applie = {
   comment?: string;

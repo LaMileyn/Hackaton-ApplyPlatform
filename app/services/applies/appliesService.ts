@@ -2,8 +2,10 @@ import {
   ApplieWithVacancy,
   ApplyInfoResponse,
   CreateApply,
+  EApplieStatus,
 } from '@/app/types/applies';
 import { $api } from '../instance';
+import { ChangeApplyStatusRequest } from '@/app/types/applies/requests';
 
 class AplliesService {
   async applyToVacancy(data: CreateApply) {
@@ -17,6 +19,11 @@ class AplliesService {
     if (!id) return null;
     const { data } = await $api.get<ApplyInfoResponse>(`/applies/${id}`);
     return data;
+  }
+  async changeApplyStatus(data: ChangeApplyStatusRequest) {
+    return $api.post('/applies/' + data.id + '/status', {
+      status: data.status,
+    });
   }
 }
 

@@ -18,6 +18,10 @@ export const vacancyStatic: Record<
     text: 'Собеседования',
     color: 'success',
   },
+  [EVacancyStatus.CLOSED]: {
+    text: 'Закрыта',
+    color: 'danger',
+  },
 };
 
 export const applieStatic: Record<

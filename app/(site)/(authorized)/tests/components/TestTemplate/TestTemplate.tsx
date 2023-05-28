@@ -17,6 +17,9 @@ const TestTemplate: FC = () => {
   const router = useRouter();
 
   const { data } = useQuery(['test', id], () => testsService.getTest(+id));
+
+  // const { mutate: updateTest} = useMutation(testsService.updateTest)
+
   const { mutate: createTest } = useMutation(testsService.createTest, {
     onSuccess: (resData) => {
       router.push(TESTS_ROUTE + '/' + resData.ID);
@@ -42,8 +45,10 @@ const TestTemplate: FC = () => {
   }, [id]);
 
   const handleSave = () => {
-    if (!id && testData) {
-      createTest(testData);
+    if (!id) {
+      testData && createTest(testData);
+    } else {
+      // testData && updateTest()
     }
   };
   return (
@@ -85,7 +90,9 @@ const TestTemplate: FC = () => {
             </Button>
           )}
           {isEditMode && id && <Button variant="secondary">Отмена</Button>}
-          {!isEditMode && id && <Button>Редактировать</Button>}
+          {!isEditMode && id && (
+            <Button onClick={() => changeEditMode(true)}>Редактировать</Button>
+          )}
           {isEditMode && <Button onClick={handleSave}>Сохранить</Button>}
         </div>
       </div>
