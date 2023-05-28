@@ -8,7 +8,8 @@ import ContentEditable from 'react-contenteditable';
 import { useResumeContext } from '@/app/providers/resumeFormProvider/resumeFormProvider';
 
 const ResumeBody: FC<ResumeBodyProps> = () => {
-  const { resume, updateAbout } = useResumeContext();
+  const { resume, updateAbout, isEditing } = useResumeContext();
+
   return (
     <div>
       <section className="mb-7">
@@ -18,6 +19,7 @@ const ResumeBody: FC<ResumeBodyProps> = () => {
             className="outline-none editablePlaceholder"
             placeholder="Напишите сопроводительное сообщение о себе в несколько строк"
             html={resume?.about || ''}
+            disabled={!isEditing}
             onChange={(e) => updateAbout?.(e.target.value)}
           />
         </div>

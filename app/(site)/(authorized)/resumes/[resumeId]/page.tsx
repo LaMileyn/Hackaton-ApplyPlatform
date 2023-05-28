@@ -1,6 +1,6 @@
 'use client';
 
-import { ClientOnly, Container } from '@/app/components';
+import { ClientOnly } from '@/app/components';
 import ResumeTemplate from '../components/ResumeTemplate/ResumeTemplate';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';

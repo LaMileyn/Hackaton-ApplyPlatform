@@ -7,7 +7,7 @@ import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
 import { useResumeContext } from '@/app/providers/resumeFormProvider/resumeFormProvider';
 
 const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
-  const { deleteStroke, updateStroke } = useResumeContext();
+  const { deleteStroke, updateStroke, isEditing } = useResumeContext();
 
   return (
     <li className="mb-4 flex items-start gap-6 justify-between">
@@ -20,6 +20,7 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
             <ContentEditable
               className="mb-1 outline-none editablePlaceholder text-xl font-medium text-primary-500"
               placeholder="Заголовок"
+              disabled={!isEditing}
               html={stroke?.title || ''}
               onChange={(e) =>
                 updateStroke?.(blockId, stroke.ID, 'title', e.target.value)
@@ -31,6 +32,7 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
               className="mb-3 font-normal text-system-900 outline-none editablePlaceholder"
               placeholder="Подробно опишите ваши заслуги и достижения в несколько строк"
               html={stroke?.subtitle || ''}
+              disabled={!isEditing}
               onChange={(e) =>
                 updateStroke?.(blockId, stroke.ID, 'subtitle', e.target.value)
               }
@@ -40,6 +42,7 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
             <ContentEditable
               className="outline-none text-system-600 editablePlaceholder"
               placeholder="Название блока"
+              disabled={!isEditing}
               html={stroke?.description || ''}
               onChange={(e) =>
                 updateStroke?.(
@@ -53,12 +56,14 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
           </div>
         </div>
       </div>
-      <RiDeleteBin5Line
-        onClick={() => deleteStroke?.(blockId, stroke.ID)}
-        className="cursor-pointer"
-        color="gray"
-        size={24}
-      />
+      {isEditing && (
+        <RiDeleteBin5Line
+          onClick={() => deleteStroke?.(blockId, stroke.ID)}
+          className="cursor-pointer"
+          color="gray"
+          size={24}
+        />
+      )}
     </li>
   );
 };

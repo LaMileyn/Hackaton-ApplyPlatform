@@ -9,7 +9,7 @@ import ContentEditable from 'react-contenteditable';
 import { useResumeContext } from '@/app/providers/resumeFormProvider/resumeFormProvider';
 
 const BlockItem: FC<BlockItemProps> = ({ block }) => {
-  const { updateBlock, addStroke } = useResumeContext();
+  const { updateBlock, addStroke, isEditing } = useResumeContext();
   return (
     <li className="group mb-10">
       <Heading
@@ -18,6 +18,7 @@ const BlockItem: FC<BlockItemProps> = ({ block }) => {
             className="outline-none editablePlaceholder"
             placeholder="Название блока"
             html={block?.title || ''}
+            disabled={!isEditing}
             onChange={(e) =>
               updateBlock?.({
                 ...block,
@@ -27,14 +28,16 @@ const BlockItem: FC<BlockItemProps> = ({ block }) => {
           />
         }
         addonAfter={
-          <Button
-            className="opacity-0 transition group-hover:opacity-100"
-            variant="secondary"
-            onClick={() => addStroke?.(block.ID)}
-            iconLeft={<IoMdAdd />}
-          >
-            Добавить строку
-          </Button>
+          isEditing && (
+            <Button
+              className="opacity-0 transition group-hover:opacity-100"
+              variant="secondary"
+              onClick={() => addStroke?.(block.ID)}
+              iconLeft={<IoMdAdd />}
+            >
+              Добавить строку
+            </Button>
+          )
         }
       />
       <StrokesList strokes={block.strokes} blockId={block.ID} />

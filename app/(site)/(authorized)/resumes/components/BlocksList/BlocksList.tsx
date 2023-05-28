@@ -8,7 +8,7 @@ import { IoMdAdd } from 'react-icons/io';
 import { useResumeContext } from '@/app/providers/resumeFormProvider/resumeFormProvider';
 
 const BlocksList: FC<BlockListProps> = () => {
-  const { resume, addBlock } = useResumeContext();
+  const { resume, addBlock, isEditing } = useResumeContext();
 
   return (
     <>
@@ -17,10 +17,12 @@ const BlocksList: FC<BlockListProps> = () => {
           <BlockItem key={block.ID} block={block} />
         ))}
       </ul>
-      <HorisontalAdd
-        btnText="Добавить свободный блок"
-        onClick={() => addBlock?.()}
-      />
+      {isEditing && (
+        <HorisontalAdd
+          btnText="Добавить свободный блок"
+          onClick={() => addBlock?.()}
+        />
+      )}
     </>
   );
 };

@@ -187,6 +187,10 @@ const ResumeFormContextProvider = ({ children }: PropsWithChildren) => {
     setState((prev) => ({ ...prev, isEditing: mode }));
   }, []);
 
+  const cancelEdit = useCallback(() => {
+    // setState((prev) => ({...prev, resume: }))
+  }, []);
+
   return (
     <ResumeFormContext.Provider
       value={{

@@ -6,8 +6,8 @@ import {
 
 export const initialStroke: ResumeStroke = {
   ID: 1,
-  dateFrom: '',
-  dateTo: '',
+  dateFrom: '2003-06-17T00:00:00Z',
+  dateTo: '2003-06-17T00:00:00Z',
   description: '',
   subtitle: '',
   title: '',
@@ -28,8 +28,8 @@ export const blocksData: ResumeBlockFull[] = [
         ID: 1,
         title: '',
         subtitle: '',
-        dateFrom: '',
-        dateTo: '',
+        dateFrom: '2003-06-17T00:00:00Z',
+        dateTo: '2003-06-17T00:00:00Z',
         description: '',
       },
     ],
