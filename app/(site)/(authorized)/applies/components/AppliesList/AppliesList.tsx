@@ -7,7 +7,7 @@ import { Card } from '@/app/components';
 const AppliesList: FC<AppliesListProps> = ({ applies, openInfoBar }) => {
   const handleInfoBarOpen = useCallback(() => {
     openInfoBar(true);
-  }, []);
+  }, [openInfoBar]);
 
   return (
     <div>

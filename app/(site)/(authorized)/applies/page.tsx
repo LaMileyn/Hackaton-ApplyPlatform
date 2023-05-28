@@ -2,7 +2,7 @@
 
 import { ClientOnly, Container, SidebarInfo } from '@/app/components';
 import AppliesList from './components/AppliesList';
-import { Applie, ApplieWithVacancy, EApplieStatus } from '@/app/types/applies';
+import { ApplieWithVacancy, EApplieStatus } from '@/app/types/applies';
 import { useState } from 'react';
 import { EVacancyStatus } from '@/app/types/vacancies';
 

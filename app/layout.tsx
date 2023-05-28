@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import './globals.css';
 import Providers from './providers';
 
@@ -13,6 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+      </Head>
       <Providers>
         <body>{children}</body>
       </Providers>

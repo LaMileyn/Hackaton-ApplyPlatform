@@ -4,7 +4,7 @@ import { ApplieWithUser } from '@/app/types/applies';
 
 class VacanciesService {
   async getAll(queryString: string) {
-    const { data } = await $api.get<Vacancy[]>(`/vacancies?${queryString}`);
+    const { data } = await $api.get<Vacancy[]>(`/vacancies/`);
     return data;
   }
   async getVacancy(ID: Vacancy['ID']) {

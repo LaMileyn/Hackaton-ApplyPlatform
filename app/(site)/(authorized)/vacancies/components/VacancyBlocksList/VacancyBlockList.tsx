@@ -12,12 +12,14 @@ const VacancyBlockList: FC<VacancyBlockListProps> = ({
   templates,
   isEditMode,
 }) => {
-  console.log(isEditMode);
   return (
     <div className="mt-10">
       {templates.map((template) => {
         return (
-          <div className="group flex item-start justify-between mb-10">
+          <div
+            key={template.ID}
+            className="group flex item-start justify-between mb-10"
+          >
             <div>
               <Heading
                 title={
