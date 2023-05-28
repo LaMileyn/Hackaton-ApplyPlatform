@@ -58,6 +58,7 @@ const ChooseResumeModal: FC<ChooseResumeModalProps> = ({
             </Dialog.Title>
             {resumes?.map((resume) => (
               <div
+                key={resume.ID}
                 onClick={() => handleApply(resume.ID)}
                 className="py-2 px-4 hover:scale-105 transition shadow-sm mb-3 cursor-pointer"
               >
