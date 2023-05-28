@@ -21,6 +21,9 @@ class ResumesService {
     const { data } = await $api.get<Resume[]>('/cv');
     return data;
   }
+  async deleteResume(id: number) {
+    return $api.delete<Resume>('/cv/' + id);
+  }
 }
 
 export default new ResumesService();

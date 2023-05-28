@@ -1,7 +1,6 @@
 'use client';
 
-import { Card } from '@/app/components';
-import { VACANCIES_ROUTE } from '@/app/const/appRoutes';
+import { Card, Placeholder } from '@/app/components';
 import { appliesService } from '@/app/services';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -12,6 +11,9 @@ const AppliesList: FC = () => {
   const router = useRouter();
   return (
     <div>
+      {(!data || data?.length === 0) && (
+        <Placeholder text="Вы еще не откликнулись ни на одну вакансию" />
+      )}
       {data?.slice(0, 3).map((apply) => (
         <Card
           key={apply.apply.ID}

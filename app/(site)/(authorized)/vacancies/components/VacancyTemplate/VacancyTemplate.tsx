@@ -22,6 +22,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { appliesService, vacanciesService } from '@/app/services';
 import { RiDeleteBack2Fill, RiDeleteBin2Fill } from 'react-icons/ri';
 import ChooseResumeModal from '../../[id]/components/ChooseResumeModal/ChooseResumeModal';
+import { vacancyStatic } from '@/app/components/Card/store';
 
 const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
   const router = useRouter();
@@ -58,6 +59,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     setEditMode,
     createVacancy,
     updateVacancy,
+    isDisabled,
   } = useEditableVacancy(ID ? data : mockTemplates);
 
   useEffect(() => {
@@ -82,6 +84,17 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     }
   };
 
+  const { mutate: deleteVacancy, isLoading: isDeleting } = useMutation(
+    vacanciesService.deleteVacancy,
+    {
+      onSuccess: () => {
+        router.push(VACANCIES_ROUTE);
+      },
+    }
+  );
+  const handleDeleteVacancy = () => {
+    ID && !isDeleting && deleteVacancy(ID);
+  };
   const topButtons = (
     <div className="flex gap-2">
       {isRecruter && !isEditing && (
@@ -101,13 +114,14 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
           {!!ID && (
             <Button
               variant="secondary"
+              onClick={handleDeleteVacancy}
               iconLeft={<RiDeleteBin2Fill color="#DA5155" />}
             />
           )}
           <Button variant="secondary" onClick={handleCancel}>
             Отмена
           </Button>
-          <Button onClick={handleSaveCreateClick}>
+          <Button onClick={handleSaveCreateClick} disabled={isDisabled}>
             {ID ? 'Сохранить' : 'Создать'}
           </Button>
         </>
@@ -181,9 +195,12 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
         </div>
         <div>{topButtons}</div>
       </div>
-      {isRecruter && (
-        <div className="mt-10 flex gap-4">
-          <Status text="Собеседования" variant="success" />
+      {isRecruter && vacancyData && (
+        <div className="mt-10 flex gap-4 item-center">
+          <Status
+            text={vacancyStatic[vacancyData?.status].text}
+            variant={vacancyStatic[vacancyData?.status].color}
+          />
           <p className="text-base text-system-600">
             Статус и заказчик не отображается соискателям
           </p>

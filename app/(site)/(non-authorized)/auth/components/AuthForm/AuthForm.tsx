@@ -45,8 +45,16 @@ const AuthForm: FC = () => {
     return selectOptions.find((opt) => opt.value === role);
   }, [selectOptions, role]);
 
-  const signIn = useSignIn(email.value, password.value);
-  const signUp = useSignUp(email.value, password.value, role, fullName.value);
+  const { signIn, isError: isSignInError } = useSignIn(
+    email.value,
+    password.value
+  );
+  const { signUp, isError: isSignUpError } = useSignUp(
+    email.value,
+    password.value,
+    role,
+    fullName.value
+  );
 
   const handleChangeFormType = () => {
     setFormType((prevType) =>
@@ -64,8 +72,18 @@ const AuthForm: FC = () => {
     }
   };
 
+  const isFormError = isSignInError || isSignUpError;
+
   return (
     <div className="mt-7 px-4">
+      {isFormError && (
+        <div
+          className="bg-transparent mb-4 border border-secondary-700 text-red-700 px-4 py-3 rounded relative"
+          role="alert"
+        >
+          <span className="block sm:inline">Неверные данные</span>
+        </div>
+      )}
       <FormTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <form onSubmit={handleSubmit}>
         <FormInput type="email" {...email} placeholder="Электронная почта" />

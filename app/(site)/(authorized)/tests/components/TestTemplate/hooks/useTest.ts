@@ -15,6 +15,10 @@ const useTest = (test: TestWithQuestions | undefined) => {
     test,
   });
 
+  const cancelChanges = useCallback(() => {
+    setState((prev) => ({ isEditMode: false, test }));
+  }, [test]);
+
   useEffect(() => {
     setState((prev) => ({ ...prev, test }));
   }, [test]);
@@ -117,6 +121,7 @@ const useTest = (test: TestWithQuestions | undefined) => {
     addQuestion,
     deleteQuestion,
     addVariant,
+    cancelChanges,
   };
 };
 
