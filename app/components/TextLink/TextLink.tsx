@@ -13,7 +13,7 @@ const TextLink: FC<TextLinkProps> = ({ href, className, hovered, text }) => {
         'text-primary-300',
         hovered && 'hover:underline'
       )}
-      href={'/'}
+      href={href}
     >
       {text}
     </Link>

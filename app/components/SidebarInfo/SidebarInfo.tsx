@@ -12,14 +12,22 @@ import useUser from '@/app/hooks/useUser/useUser';
 import Button from '../Button/Button';
 import { EUserRole } from '@/app/types/users';
 import StagesList from './components/StagesList/StagesList';
+import { useQuery } from '@tanstack/react-query';
+import { appliesService } from '@/app/services';
+import { RESUMES_ROUTE, VACANCIES_ROUTE } from '@/app/const/appRoutes';
 
-const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, fromForm }) => {
+const SidebarInfo: FC<SidebarInfoProps> = ({
+  isOpen,
+  setIsOpen,
+  fromForm,
+  id,
+}) => {
+  const { data } = useQuery(['apply', id], () =>
+    appliesService.getApplyInfo(id)
+  );
   const ref = useClickOutside<HTMLDivElement>(() => {
     setIsOpen(false);
-    setIsLocked(false);
   });
-
-  const [islocked, setIsLocked] = useLockedBody(true);
 
   const headingRight = (
     <div className="flex gap-3">
@@ -60,27 +68,43 @@ const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, fromForm }) => {
                   )}
                   <div>
                     <div className="text-4xl text-primary-500">
-                      Middle IOS разработчик
+                      {data?.cv?.title}
                     </div>
                     <div className="text-xl font-medium text-system-900 mt-4 mb-16">
-                      Совкомбанк
+                      {fromForm ? data?.user?.fullName : data?.vacancy.company}
                     </div>
+                    {fromForm && (
+                      <div className="flex gap-3 items-center mb-10 mt-6">
+                        <TextLink
+                          href={RESUMES_ROUTE + '/' + data?.cv.ID}
+                          text="Открыть резюме"
+                          hovered
+                        />
+                        <TextLink href={'/'} text="Связаться" hovered />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <VscChromeClose
                   onClick={() => {
                     setIsOpen(false);
-                    setIsLocked(false);
                   }}
                   className="cursor-pointer"
                   size={30}
                   color="grey"
                 />
               </div>
-              <div className="flex gap-3 items-center mb-10 mt-6">
-                <TextLink href={'/'} text="Открыть вакансию" hovered />
-                <TextLink href={'/'} text="Связаться с рекрутером" hovered />
-              </div>
+              {!fromForm && (
+                <div className="flex gap-3 items-center mb-10 mt-6">
+                  <TextLink
+                    href={VACANCIES_ROUTE + '/' + data?.vacancy.ID}
+                    text="Открыть вакансию"
+                    hovered
+                  />
+                  <TextLink href={'/'} text="Связаться с рекрутером" hovered />
+                </div>
+              )}
+
               <Heading title="Этапы собеседования" addonAfter={headingRight} />
               <StagesList />
             </div>

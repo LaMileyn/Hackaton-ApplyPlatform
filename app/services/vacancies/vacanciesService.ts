@@ -1,6 +1,6 @@
 import { Vacancy, VacancyWithTemplates } from '@/app/types/vacancies';
 import { $api } from '../instance';
-import { ApplieWithUser } from '@/app/types/applies';
+import { ApplieWithCV, AppliesWithVacancy } from '@/app/types/applies';
 
 class VacanciesService {
   async getAll(queryString: string) {
@@ -28,7 +28,7 @@ class VacanciesService {
   }
 
   async getVacancyApplies(id: number) {
-    const { data } = await $api.get<ApplieWithUser[]>(
+    const { data } = await $api.get<AppliesWithVacancy>(
       `/vacancies/${id}/applies`
     );
     return data;

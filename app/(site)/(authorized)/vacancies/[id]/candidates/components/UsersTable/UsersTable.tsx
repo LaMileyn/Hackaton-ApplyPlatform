@@ -6,7 +6,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { UsersTableProps } from './types';
 import { RESUMES_ROUTE } from '@/app/const/appRoutes';
 
-const UsersTable: FC<UsersTableProps> = ({ data }) => {
+const UsersTable: FC<UsersTableProps> = ({ data, setApplyId }) => {
   return (
     <div className="mt-7 bg-system-100 rounded-lg">
       <table className="w-full">
@@ -23,9 +23,13 @@ const UsersTable: FC<UsersTableProps> = ({ data }) => {
           {data.length === 0 && (
             <div className="text-center w-full py-10">No data found</div>
           )}
-          {data.map((apply, i) => (
-            <tr key={i} className="hover:bg-system-300 cursor-pointer">
-              <td className="py-3 px-7">{apply.user.fullName}</td>
+          {data?.map((apply, i) => (
+            <tr
+              key={apply.ID}
+              className="hover:bg-system-300 cursor-pointer"
+              onClick={() => setApplyId(apply.ID)}
+            >
+              <td className="py-3 px-7">{apply.cv.user.fullName}</td>
               <td className="py-3 px-7">
                 <TextLink text="Связаться" href="/" hovered={true} />
               </td>
@@ -33,7 +37,7 @@ const UsersTable: FC<UsersTableProps> = ({ data }) => {
               <td className="py-3 px-7">
                 <TextLink
                   text="Открыть"
-                  href={RESUMES_ROUTE + '/' + apply.user.resume.ID}
+                  href={RESUMES_ROUTE + '/' + apply.cv.ID}
                   hovered={true}
                 />
               </td>

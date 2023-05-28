@@ -1,4 +1,5 @@
 import { BaseModel } from '../common/models';
+import { User } from '../users';
 
 export type ResumeBlock = {
   title: string;
@@ -21,6 +22,10 @@ export type Resume = {
   username: string;
   about: string;
 } & BaseModel;
+
+export type ResumeWithUser = {
+  user: User;
+} & Resume;
 
 export type ResumeFull = {
   blocks: ResumeBlockFull[];

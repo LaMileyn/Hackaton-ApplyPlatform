@@ -6,10 +6,14 @@ import { Card, Placeholder } from '@/app/components';
 import { useQuery } from '@tanstack/react-query';
 import { appliesService } from '@/app/services';
 
-const AppliesList: FC<AppliesListProps> = ({ openInfoBar }) => {
-  const handleInfoBarOpen = useCallback(() => {
-    openInfoBar(true);
-  }, [openInfoBar]);
+const AppliesList: FC<AppliesListProps> = ({ openInfoBar, setId }) => {
+  const handleInfoBarOpen = useCallback(
+    (id: number) => {
+      openInfoBar(true);
+      setId(id);
+    },
+    [openInfoBar]
+  );
 
   const { data } = useQuery(['my-applies'], () =>
     appliesService.getMyApplies()
@@ -23,7 +27,7 @@ const AppliesList: FC<AppliesListProps> = ({ openInfoBar }) => {
       {data?.map((el) => {
         return (
           <Card
-            onClick={handleInfoBarOpen}
+            onClick={() => handleInfoBarOpen(el.apply.ID)}
             key={el.apply.ID}
             company={el.vacancy.company}
             description={el.vacancy.description}

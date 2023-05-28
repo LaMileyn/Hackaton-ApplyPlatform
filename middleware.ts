@@ -24,10 +24,10 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
     }
   }
-  if (privateRoutes.some((curr) => url.includes(curr))) {
-    if (!token && !url.includes(AUTH_ROUTE)) {
-      console.log(url);
-      return NextResponse.redirect(new URL(AUTH_ROUTE, request.url));
-    }
-  }
+  // if (privateRoutes.some((curr) => url.includes(curr))) {
+  //   if (!token && !url.includes(AUTH_ROUTE)) {
+  //     console.log(url);
+  //     return NextResponse.redirect(new URL(AUTH_ROUTE, request.url));
+  //   }
+  // }
 }

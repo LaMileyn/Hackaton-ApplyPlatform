@@ -1,4 +1,6 @@
 import { BaseModel } from '../common/models';
+import { ResumeWithUser } from '../resumes';
+import { Stage } from '../stages';
 import { UserWithResume } from '../users';
 import { Vacancy } from '../vacancies';
 
@@ -13,16 +15,25 @@ export type Applie = {
 } & BaseModel;
 
 export type ApplieWithVacancy = {
-  apply: Applie;
+  apply: ApplieWithCV;
   vacancy: Vacancy;
 };
-
-export type ApplieWithUser = {
-  user: UserWithResume;
-} & Applie;
 
 export type CreateApply = {
   vacancyId: number;
   cvId: number;
   comment: string;
+};
+
+export type ApplyWithStages = {
+  stages: Stage[]
+} & ApplieWithCV
+
+export type ApplieWithCV = {
+  cv: ResumeWithUser;
+} & Applie;
+
+export type AppliesWithVacancy = {
+  applies: ApplieWithCV[];
+  vacancy: Vacancy;
 };

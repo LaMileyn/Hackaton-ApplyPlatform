@@ -1,4 +1,8 @@
-import { ApplieWithVacancy, CreateApply } from '@/app/types/applies';
+import {
+  ApplieWithVacancy,
+  ApplyInfoResponse,
+  CreateApply,
+} from '@/app/types/applies';
 import { $api } from '../instance';
 
 class AplliesService {
@@ -7,6 +11,11 @@ class AplliesService {
   }
   async getMyApplies() {
     const { data } = await $api.get<ApplieWithVacancy[]>('/applies/my');
+    return data;
+  }
+  async getApplyInfo(id: number | null) {
+    if (!id) return null;
+    const { data } = await $api.get<ApplyInfoResponse>(`/applies/${id}`);
     return data;
   }
 }

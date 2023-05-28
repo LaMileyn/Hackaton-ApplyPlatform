@@ -1,5 +1,6 @@
-import { ApplieWithUser } from '@/app/types/applies';
+import { ApplieWithCV } from '@/app/types/applies';
 
 export type UsersTableProps = {
-  data: ApplieWithUser[];
+  data: ApplieWithCV[];
+  setApplyId: (id: number) => void;
 };
