@@ -45,16 +45,6 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
       enabled: !!ID,
     }
   );
-
-  const { mutate: apply } = useMutation(appliesService.applyToVacancy, {
-    onMutate: (newStatus) => {
-      queryClient.setQueryData(['vacancy status', ID], true);
-    },
-    onError: async () => {
-      queryClient.setQueryData(['vacancy status', ID], false);
-    },
-  });
-
   const {
     data: vacancyData,
     isEditing,
@@ -181,7 +171,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
           </div>
           <p className="text-lg text-system-600 mt-2">
             <ContentEditable
-              className="outline-none editablePlaceholder"
+              className="outline-none editablePlaceholder text-xl text-system-600"
               placeholder="Описание вакансии: место, подразделение, тип занятости и требуемый опыт"
               html={vacancyData?.description || ''}
               onChange={handleDescUpdate}

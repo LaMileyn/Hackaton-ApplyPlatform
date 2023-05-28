@@ -15,6 +15,10 @@ class TestsService {
     const { data } = await $api.get<TestWithQuestions>('/tests/' + testId);
     return data;
   }
+  async getMyTests() {
+    const { data } = await $api.get<Test[]>('/tests/by');
+    return data;
+  }
 }
 
 export default new TestsService();

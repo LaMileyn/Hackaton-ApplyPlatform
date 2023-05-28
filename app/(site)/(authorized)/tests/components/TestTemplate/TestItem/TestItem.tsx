@@ -40,7 +40,7 @@ const TestItem: FC<TestItemProps> = ({
               title: e.target.value,
             })
           }
-          disabled={false}
+          disabled={!isEditMode}
         />
         {isEditMode && (
           <RiDeleteBin5Line
@@ -57,6 +57,7 @@ const TestItem: FC<TestItemProps> = ({
             <input
               type="radio"
               name={question.title}
+              disabled={!isEditMode && !isRoleCandidate}
               checked={i === question.answer}
               onChange={() => handleChangeRadio(i)}
             />
@@ -77,15 +78,19 @@ const TestItem: FC<TestItemProps> = ({
                   ),
                 })
               }
-              disabled={false}
+              disabled={!isEditMode}
             />
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-2 mt-10">
-        <Button onClick={() => addVariant(question.ID)}>Добавить ответ</Button>
-        <p className="text-sm text-system-600">Выберите верный ответ</p>
-      </div>
+      {isEditMode && (
+        <div className="flex items-center gap-2 mt-10">
+          <Button onClick={() => addVariant(question.ID)}>
+            Добавить ответ
+          </Button>
+          <p className="text-sm text-system-600">Выберите верный ответ</p>
+        </div>
+      )}
     </div>
   );
 };

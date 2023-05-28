@@ -8,8 +8,8 @@ const setCookie = (name: string, value: string, options: IObject<any> = {}) => {
   if (!canUseDOM) return;
 
   options = {
-    path: '/',
     ...options,
+    path: '/',
   };
 
   let expires = options.expires;

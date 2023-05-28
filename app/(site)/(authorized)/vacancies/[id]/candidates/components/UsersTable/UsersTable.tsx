@@ -1,6 +1,6 @@
 'use client';
 
-import { Status, TextLink } from '@/app/components';
+import { Placeholder, Status, TextLink } from '@/app/components';
 import React, { FC } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 import { UsersTableProps } from './types';
@@ -21,7 +21,9 @@ const UsersTable: FC<UsersTableProps> = ({ data, setApplyId }) => {
         </thead>
         <tbody>
           {data.length === 0 && (
-            <div className="text-center w-full py-10">No data found</div>
+            <div className="px-7">
+              <Placeholder text="Пока что список кандидатов пуст..." />
+            </div>
           )}
           {data?.map((apply, i) => (
             <tr

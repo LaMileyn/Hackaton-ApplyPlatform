@@ -10,13 +10,18 @@ import { initalQuestionTemplate, initialTestTemplate } from './store';
 import useTest from './hooks/useTest';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { testsService } from '@/app/services';
+import { TESTS_ROUTE } from '@/app/const/appRoutes';
 
 const TestTemplate: FC = () => {
   const { id } = useParams();
   const router = useRouter();
 
   const { data } = useQuery(['test', id], () => testsService.getTest(+id));
-  const { mutate: createTest } = useMutation(testsService.createTest);
+  const { mutate: createTest } = useMutation(testsService.createTest, {
+    onSuccess: (resData) => {
+      router.push(TESTS_ROUTE + '/' + resData.ID);
+    },
+  });
 
   const {
     addQuestion,
@@ -28,7 +33,7 @@ const TestTemplate: FC = () => {
     deleteQuestion,
     isEditMode,
     testData,
-  } = useTest(data ?? initialTestTemplate);
+  } = useTest(data || initialTestTemplate);
 
   useEffect(() => {
     if (!id) {
@@ -60,7 +65,7 @@ const TestTemplate: FC = () => {
               placeholder="Название теста"
               html={testData?.title || ''}
               onChange={(e) => changeTestTitle(e.target.value)}
-              disabled={false}
+              disabled={!isEditMode}
             />
           </h1>
           <h1 className="text-xl text-system-600  font-normal">
@@ -69,7 +74,7 @@ const TestTemplate: FC = () => {
               placeholder="Описание теста"
               html={testData?.description || ''}
               onChange={(e) => changeTestDescription(e.target.value)}
-              disabled={false}
+              disabled={!isEditMode}
             />
           </h1>
         </div>
@@ -80,6 +85,7 @@ const TestTemplate: FC = () => {
             </Button>
           )}
           {isEditMode && id && <Button variant="secondary">Отмена</Button>}
+          {!isEditMode && id && <Button>Редактировать</Button>}
           {isEditMode && <Button onClick={handleSave}>Сохранить</Button>}
         </div>
       </div>

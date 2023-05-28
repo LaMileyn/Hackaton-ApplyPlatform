@@ -2,7 +2,7 @@
 
 import React, { FC } from 'react';
 import { VacanciesListProps } from './types';
-import { Card } from '@/app/components';
+import { Card, Placeholder } from '@/app/components';
 import { useQuery } from '@tanstack/react-query';
 import { vacanciesService } from '@/app/services';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -21,6 +21,9 @@ const VacanciesList: FC<VacanciesListProps> = () => {
   );
   return (
     <div className="flex-1">
+      {vacancies?.length === 0 && (
+        <Placeholder text="Список вакансий пуст..." />
+      )}
       {vacancies?.map((vacancy) => (
         <Card
           key={vacancy.ID}

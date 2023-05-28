@@ -18,8 +18,9 @@ const privateRoutes = [
 export function middleware(request: NextRequest) {
   const { cookies } = request;
   const url = request.url;
-  const token = cookies.get('USER');
-  if (url.includes(AUTH_ROUTE)) {
+  const basePath = 'http://localhost:3000/';
+  const token = cookies.get(USER_COOKIES_KEY);
+  if (url.includes(AUTH_ROUTE) && url.split(basePath)[1] === 'auth') {
     if (token) {
       return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
     }

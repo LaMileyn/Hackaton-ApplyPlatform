@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { RESUMES_ROUTE } from '@/app/const/appRoutes';
 import { useQuery } from '@tanstack/react-query';
 import { resumesService } from '@/app/services';
+import { GrAdd } from 'react-icons/gr';
 
 const ResumesList: FC<ResumesListProps> = () => {
   const { data: resumes } = useQuery(['resumes'], () =>
@@ -21,9 +22,10 @@ const ResumesList: FC<ResumesListProps> = () => {
       <div
         onClick={() => router.push(RESUMES_ROUTE + '/' + 'create')}
         className="p-3 cursor-pointer min-h-[200px] rounded bg-system-100 
-        flex items-center justify-center flex-col font-medium text-center"
+        flex items-center justify-center w-[180px] flex-col font-medium text-center"
       >
-        <div>Добавить резюме</div>
+        <GrAdd size={45} color="#3557C4" />
+        <div className="mt-2 text-system-900">Добавить резюме</div>
       </div>
     </div>
   );

@@ -11,9 +11,12 @@ import { EUserRole } from '@/app/types/users';
 import { useInput } from '@/app/hooks';
 import useSignIn from '../hooks/useSignIn';
 import useSignUp from '../hooks/useSignUp';
+import useUser from '@/app/hooks/useUser/useUser';
 
 const AuthForm: FC = () => {
   const [role, setRole] = useState<EUserRole>(EUserRole.CANDIDATE);
+
+  const user = useUser();
 
   const email = useInput();
   const password = useInput();

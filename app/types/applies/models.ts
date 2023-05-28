@@ -25,10 +25,6 @@ export type CreateApply = {
   comment: string;
 };
 
-export type ApplyWithStages = {
-  stages: Stage[]
-} & ApplieWithCV
-
 export type ApplieWithCV = {
   cv: ResumeWithUser;
 } & Applie;

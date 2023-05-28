@@ -1,6 +1,6 @@
 import { Question } from '@/app/types/questions';
 import { TestWithQuestions } from '@/app/types/tests';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { initalQuestionTemplate } from '../store';
 import { generateUuid } from '@/app/helpers';
 import { generateInitialQuestion, generateInitialVariant } from '../helpers';
@@ -15,6 +15,9 @@ const useTest = (test: TestWithQuestions | undefined) => {
     test,
   });
 
+  useEffect(() => {
+    setState((prev) => ({ ...prev, test }));
+  }, [test]);
   const changeEditMode = useCallback((mode: boolean) => {
     setState((prev) => ({ ...prev, isEditMode: mode }));
   }, []);
