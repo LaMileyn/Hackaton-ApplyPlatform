@@ -53,7 +53,7 @@ const TestItem: FC<TestItemProps> = ({
       </div>
       <div className="mb-4">
         {question.variants.map((variant, i) => (
-          <div className="mb-3 flex items-center gap-2">
+          <div className="mb-3 flex items-center gap-2" key={variant.ID}>
             <input
               type="radio"
               name={question.title}

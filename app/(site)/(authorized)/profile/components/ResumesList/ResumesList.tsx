@@ -24,7 +24,7 @@ const ResumesList: FC<ResumesListProps> = () => {
         className="p-3 cursor-pointer min-h-[200px] rounded bg-system-100 
         flex items-center justify-center w-[180px] flex-col font-medium text-center"
       >
-        <GrAdd size={45} color="#3557C4" />
+        <GrAdd size={42} color="#3557C4" />
         <div className="mt-2 text-system-900">Добавить резюме</div>
       </div>
     </div>
