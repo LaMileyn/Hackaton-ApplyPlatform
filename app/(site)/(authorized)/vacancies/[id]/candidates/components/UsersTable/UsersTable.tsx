@@ -5,6 +5,7 @@ import React, { FC } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 import { UsersTableProps } from './types';
 import { RESUMES_ROUTE } from '@/app/const/appRoutes';
+import { applieStatic } from '@/app/components/Card/store';
 
 const UsersTable: FC<UsersTableProps> = ({ data, setApplyId }) => {
   return (
@@ -45,7 +46,10 @@ const UsersTable: FC<UsersTableProps> = ({ data, setApplyId }) => {
               </td>
               <td className="py-3 px-7">
                 <div className="flex items-center justify-between w-full mx-w-[150px]">
-                  <Status text="Собеседование" variant="primary" />
+                  <Status
+                    text={applieStatic[apply.status].text}
+                    variant={applieStatic[apply.status].color}
+                  />
                   <IoIosArrowForward />
                 </div>
               </td>
