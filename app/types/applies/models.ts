@@ -13,9 +13,16 @@ export type Applie = {
 } & BaseModel;
 
 export type ApplieWithVacancy = {
+  apply: Applie;
   vacancy: Vacancy;
-} & Applie;
+};
 
 export type ApplieWithUser = {
   user: UserWithResume;
 } & Applie;
+
+export type CreateApply = {
+  vacancyId: number;
+  cvId: number;
+  comment: string;
+};

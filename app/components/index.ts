@@ -12,3 +12,4 @@ export { default as ApplyStage } from './ApplyStage';
 export { default as TextLink } from './TextLink';
 export { default as Card } from './Card';
 export { default as ClientOnly } from './ClientOnly';
+export { default as Placeholder } from './Placeholder';

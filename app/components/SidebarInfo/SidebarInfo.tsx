@@ -3,7 +3,7 @@
 import React, { FC } from 'react';
 import { SidebarInfoProps } from './types';
 import cn from 'classnames';
-import { useClickOutside } from '@/app/hooks';
+import { useClickOutside, useLockedBody } from '@/app/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { VscChromeClose } from 'react-icons/vsc';
 import TextLink from '../TextLink/TextLink';
@@ -16,7 +16,10 @@ import StagesList from './components/StagesList/StagesList';
 const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, fromForm }) => {
   const ref = useClickOutside<HTMLDivElement>(() => {
     setIsOpen(false);
+    setIsLocked(false);
   });
+
+  const [islocked, setIsLocked] = useLockedBody(true);
 
   const headingRight = (
     <div className="flex gap-3">
@@ -65,7 +68,10 @@ const SidebarInfo: FC<SidebarInfoProps> = ({ isOpen, setIsOpen, fromForm }) => {
                   </div>
                 </div>
                 <VscChromeClose
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsLocked(false);
+                  }}
                   className="cursor-pointer"
                   size={30}
                   color="grey"

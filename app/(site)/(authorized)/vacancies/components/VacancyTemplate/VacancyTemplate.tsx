@@ -16,11 +16,12 @@ import useEditableVacancy from './../hooks/useEditableVacancy';
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
 import VacancyBlockList from './../VacancyBlocksList';
 import { mockTemplates } from './store';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { VacancyTemplateProps } from './types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { appliesService, vacanciesService } from '@/app/services';
 import { RiDeleteBack2Fill, RiDeleteBin2Fill } from 'react-icons/ri';
+import ChooseResumeModal from '../../[id]/components/ChooseResumeModal/ChooseResumeModal';
 
 const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
       enabled: !!ID,
     }
   );
-  const { data: isApplied, refetch } = useQuery(
+  const { data: status, refetch } = useQuery(
     ['vacancy status', ID],
     () => vacanciesService.checkApplyButtonStatus(ID as any),
     {
@@ -91,12 +92,6 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     }
   };
 
-  const handleApply = () => {
-    if (ID) {
-      apply(ID);
-    }
-  };
-
   const topButtons = (
     <div className="flex gap-2">
       {isRecruter && !isEditing && (
@@ -128,10 +123,10 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
         </>
       )}
       {!isRecruter &&
-        (!isApplied ? (
+        (status?.applied ? (
           <Button variant="secondary">Вы откликнулись</Button>
         ) : (
-          <Button>Откликнуться</Button>
+          <Button onClick={() => setIsOpenModal(true)}>Откликнуться</Button>
         ))}
     </div>
   );
@@ -146,8 +141,15 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
     updateCompany(ev.target.value);
   };
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   return (
     <Container>
+      <ChooseResumeModal
+        isOpen={isOpenModal}
+        setIsOpen={setIsOpenModal}
+        vacancyId={vacancyData?.ID}
+      />
       <div className="mb-4">
         <Button
           variant="transparent"

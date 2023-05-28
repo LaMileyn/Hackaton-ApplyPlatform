@@ -12,7 +12,9 @@ class VacanciesService {
     return data;
   }
   async checkApplyButtonStatus(ID: Vacancy['ID']) {
-    const { data } = await $api.get<boolean>(`/vacancies/${ID}/applyStatus`);
+    const { data } = await $api.get<{
+      applied: boolean;
+    }>(`/vacancies/${ID}/applyStatus`);
     return data;
   }
 
