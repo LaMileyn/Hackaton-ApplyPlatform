@@ -10,12 +10,13 @@ import { useParams } from 'next/navigation';
 import { initialResume } from './store';
 
 const ResumeTemplate: FC<ResumeTemplateProps> = () => {
-  const { setResumeData } = useResumeContext();
+  const { setResumeData, setEditMode } = useResumeContext();
   const { resumeId } = useParams();
 
   useEffect(() => {
     if (!resumeId) {
       setResumeData?.(initialResume);
+      setEditMode?.(true);
     }
   }, [resumeId]);
 

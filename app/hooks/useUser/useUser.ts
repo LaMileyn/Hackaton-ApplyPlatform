@@ -19,6 +19,7 @@ const useUser = () => {
     }
   );
   useEffect(() => {
+    console.log(user);
     if (!user) userLocalStorage.removeUser();
     else userLocalStorage.saveUser(user);
   }, [user]);

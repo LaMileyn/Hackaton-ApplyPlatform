@@ -23,6 +23,7 @@ const ResumeHeader: FC<ResumeHeaderProps> = () => {
   const { mutate: createResume } = useMutation(resumersService.createResume, {
     onSuccess: (resume) => {
       router.push(RESUMES_ROUTE + '/' + resume.ID);
+      setEditMode?.(false);
     },
   });
   const { mutate: updateResume } = useMutation(resumersService.updateResume, {

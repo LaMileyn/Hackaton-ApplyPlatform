@@ -8,7 +8,7 @@ const ProfilePage = () => {
       <Container>
         <div className="py-14">
           <ProfileHeader />
-          <ResumesList resumes={[]} />
+          <ResumesList />
         </div>
       </Container>
     </ClientOnly>
