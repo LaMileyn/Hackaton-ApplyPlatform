@@ -2,16 +2,22 @@
 
 import { Button, Container, HorisontalAdd } from '@/app/components';
 import { useParams, useRouter } from 'next/navigation';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
 import TestItem from './TestItem/TestItem';
 import { initalQuestionTemplate, initialTestTemplate } from './store';
 import useTest from './hooks/useTest';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { testsService } from '@/app/services';
 
 const TestTemplate: FC = () => {
   const { id } = useParams();
   const router = useRouter();
+
+  const { data } = useQuery(['test', id], () => testsService.getTest(+id));
+  const { mutate: createTest } = useMutation(testsService.createTest);
+
   const {
     addQuestion,
     addVariant,
@@ -22,8 +28,19 @@ const TestTemplate: FC = () => {
     deleteQuestion,
     isEditMode,
     testData,
-  } = useTest(id ? initialTestTemplate : initialTestTemplate);
+  } = useTest(data ?? initialTestTemplate);
 
+  useEffect(() => {
+    if (!id) {
+      changeEditMode(true);
+    }
+  }, [id]);
+
+  const handleSave = () => {
+    if (!id && testData) {
+      createTest(testData);
+    }
+  };
   return (
     <Container>
       <div className="mb-4">
@@ -57,10 +74,13 @@ const TestTemplate: FC = () => {
           </h1>
         </div>
         <div className="flex gap-2">
-          <Button variant="secondary" onClick={addQuestion}>
-            Добавить шаблон
-          </Button>
-          <Button>Сохранить</Button>
+          {isEditMode && !id && (
+            <Button variant="secondary" onClick={addQuestion}>
+              Добавить шаблон
+            </Button>
+          )}
+          {isEditMode && id && <Button variant="secondary">Отмена</Button>}
+          {isEditMode && <Button onClick={handleSave}>Сохранить</Button>}
         </div>
       </div>
       <div className="mt-5">
@@ -75,12 +95,14 @@ const TestTemplate: FC = () => {
           />
         ))}
       </div>
-      <div className="mt-7">
-        <HorisontalAdd
-          btnText="Добавить шаблон"
-          onClick={() => addQuestion()}
-        />
-      </div>
+      {isEditMode && (
+        <div className="mt-7">
+          <HorisontalAdd
+            btnText="Добавить шаблон"
+            onClick={() => addQuestion()}
+          />
+        </div>
+      )}
     </Container>
   );
 };

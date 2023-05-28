@@ -1,16 +1,7 @@
 import { Question } from '@/app/types/questions';
 import { TestWithQuestions } from '@/app/types/tests';
+import { generateInitialQuestion, generateInitialTest } from './helpers';
 
-export const initalQuestionTemplate: Question = {
-  ID: 1,
-  answer: 1,
-  title: '',
-  variants: [{ ID: 1, text: '' }],
-};
+export const initalQuestionTemplate: Question = generateInitialQuestion();
 
-export const initialTestTemplate: TestWithQuestions = {
-  ID: 1,
-  questions: [initalQuestionTemplate],
-  title: '',
-  description: '',
-};
+export const initialTestTemplate: TestWithQuestions = generateInitialTest();

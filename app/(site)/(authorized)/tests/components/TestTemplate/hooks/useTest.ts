@@ -2,6 +2,8 @@ import { Question } from '@/app/types/questions';
 import { TestWithQuestions } from '@/app/types/tests';
 import { useCallback, useState } from 'react';
 import { initalQuestionTemplate } from '../store';
+import { generateUuid } from '@/app/helpers';
+import { generateInitialQuestion, generateInitialVariant } from '../helpers';
 
 type IState = {
   isEditMode: boolean;
@@ -53,17 +55,12 @@ const useTest = (test: TestWithQuestions | undefined) => {
     },
     [state]
   );
-  console.log(state);
+
   const addQuestion = useCallback(() => {
     if (!state.test) return;
     const updatedQuestions = [
       ...state.test.questions,
-      {
-        ID: new Date().valueOf(),
-        answer: 1,
-        title: '',
-        variants: [{ ID: new Date().valueOf(), text: '' }],
-      },
+      generateInitialQuestion(),
     ];
     const updatedTest: TestWithQuestions = {
       ...state.test,
@@ -79,13 +76,7 @@ const useTest = (test: TestWithQuestions | undefined) => {
         quest.ID === questionId
           ? {
               ...quest,
-              variants: [
-                ...quest.variants,
-                {
-                  ID: new Date().valueOf(),
-                  text: '',
-                },
-              ],
+              variants: [...quest.variants, generateInitialVariant()],
             }
           : quest
       );

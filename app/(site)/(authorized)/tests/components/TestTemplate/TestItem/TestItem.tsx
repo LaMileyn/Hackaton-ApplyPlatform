@@ -1,10 +1,13 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, memo, useMemo, useState } from 'react';
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
 import { TestItemProps } from './types';
-import { Button } from '@/app/components';
+import { Button, Select } from '@/app/components';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { Option } from '@/app/components/Select/types';
+import useUser from '@/app/hooks/useUser/useUser';
+import { EUserRole } from '@/app/types/users';
 
 const TestItem: FC<TestItemProps> = ({
   question,
@@ -13,8 +16,19 @@ const TestItem: FC<TestItemProps> = ({
   deleteQuestion,
   isEditMode,
 }) => {
+  const user = useUser();
+  const isRoleCandidate = user?.role === EUserRole.CANDIDATE;
+
+  const handleChangeRadio = (i: number) => {
+    if (!isRoleCandidate && isEditMode) {
+      changeQuestion({
+        ...question,
+        answer: i,
+      });
+    }
+  };
   return (
-    <div className="p-7 rounded-md bg-system-100 mb-3">
+    <div className="p-7 rounded-md bg-system-100 mb-3 group">
       <div className="mb-4 flex items-center justify-between">
         <ContentEditable
           className="outline-none editablePlaceholder text-xl font-medium text-primary-500"
@@ -28,17 +42,24 @@ const TestItem: FC<TestItemProps> = ({
           }
           disabled={false}
         />
-        <RiDeleteBin5Line
-          onClick={() => deleteQuestion(question.ID)}
-          className="cursor-pointer"
-          color="gray"
-          size={24}
-        />
+        {isEditMode && (
+          <RiDeleteBin5Line
+            onClick={() => deleteQuestion(question.ID)}
+            className="cursor-pointer group-hover:opacity-100 transition opacity-0"
+            color="gray"
+            size={24}
+          />
+        )}
       </div>
       <div className="mb-4">
-        {question.variants.map((variant) => (
+        {question.variants.map((variant, i) => (
           <div className="mb-3 flex items-center gap-2">
-            <input type="radio" name={variant.text} />
+            <input
+              type="radio"
+              name={question.title}
+              checked={i === question.answer}
+              onChange={() => handleChangeRadio(i)}
+            />
             <ContentEditable
               className="outline-none editablePlaceholder text-base text-system-900"
               placeholder="Вариант ответа"
@@ -69,4 +90,4 @@ const TestItem: FC<TestItemProps> = ({
   );
 };
 
-export default TestItem;
+export default memo(TestItem);
