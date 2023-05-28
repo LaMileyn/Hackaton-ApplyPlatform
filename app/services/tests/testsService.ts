@@ -6,8 +6,11 @@ class TestsService {
     const { data } = await $api.post<Test>('/tests', body);
     return data;
   }
-  async updateTest(testId: number, body: TestWithQuestions) {
-    const { data } = await $api.put<Test>('/tests/' + testId, body);
+  async updateTest(testData: { testId: number; body: TestWithQuestions }) {
+    const { data } = await $api.put<Test>(
+      '/tests/' + testData.testId,
+      testData.body
+    );
     return data;
   }
   async getTest(testId: number) {

@@ -22,6 +22,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { appliesService, vacanciesService } from '@/app/services';
 import { RiDeleteBack2Fill, RiDeleteBin2Fill } from 'react-icons/ri';
 import ChooseResumeModal from '../../[id]/components/ChooseResumeModal/ChooseResumeModal';
+import { vacancyStatic } from '@/app/components/Card/store';
 
 const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
   const router = useRouter();
@@ -194,9 +195,12 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
         </div>
         <div>{topButtons}</div>
       </div>
-      {isRecruter && (
-        <div className="mt-10 flex gap-4">
-          <Status text="Собеседования" variant="success" />
+      {isRecruter && vacancyData && (
+        <div className="mt-10 flex gap-4 item-center">
+          <Status
+            text={vacancyStatic[vacancyData?.status].text}
+            variant={vacancyStatic[vacancyData?.status].color}
+          />
           <p className="text-base text-system-600">
             Статус и заказчик не отображается соискателям
           </p>

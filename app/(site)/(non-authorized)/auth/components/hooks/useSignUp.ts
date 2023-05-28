@@ -12,7 +12,7 @@ const useSignUp = (
 ) => {
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { mutate: signUp } = useMutation(
+  const { mutate: signUp, isError } = useMutation(
     () =>
       userService.register({
         email,
@@ -28,7 +28,7 @@ const useSignUp = (
     }
   );
 
-  return signUp;
+  return { signUp, isError };
 };
 
 export default useSignUp;

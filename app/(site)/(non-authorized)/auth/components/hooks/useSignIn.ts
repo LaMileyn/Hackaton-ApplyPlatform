@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 const useSignIn = (email: string, password: string) => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { mutate: signIn } = useMutation(
+  const { mutate: signIn, isError } = useMutation(
     () => userService.login({ email, password }),
     {
       onSuccess: (data) => {
@@ -16,7 +16,10 @@ const useSignIn = (email: string, password: string) => {
     }
   );
 
-  return signIn;
+  return {
+    isError,
+    signIn,
+  };
 };
 
 export default useSignIn;

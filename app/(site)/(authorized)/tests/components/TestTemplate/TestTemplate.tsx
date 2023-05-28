@@ -8,11 +8,12 @@ import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
 import TestItem from './TestItem/TestItem';
 import { initalQuestionTemplate, initialTestTemplate } from './store';
 import useTest from './hooks/useTest';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { testsService } from '@/app/services';
 import { TESTS_ROUTE } from '@/app/const/appRoutes';
 
 const TestTemplate: FC = () => {
+  const queryClient = useQueryClient();
   const { id } = useParams();
   const router = useRouter();
 
@@ -26,6 +27,13 @@ const TestTemplate: FC = () => {
     },
   });
 
+  const { mutate: updateTest } = useMutation(testsService.updateTest, {
+    onSuccess: (resData) => {
+      queryClient.invalidateQueries(['test', id]);
+      changeEditMode(false);
+    },
+  });
+
   const {
     addQuestion,
     addVariant,
@@ -34,6 +42,7 @@ const TestTemplate: FC = () => {
     changeTestDescription,
     changeTestTitle,
     deleteQuestion,
+    cancelChanges,
     isEditMode,
     testData,
   } = useTest(data || initialTestTemplate);
@@ -48,7 +57,11 @@ const TestTemplate: FC = () => {
     if (!id) {
       testData && createTest(testData);
     } else {
-      // testData && updateTest()
+      testData &&
+        updateTest({
+          body: testData,
+          testId: +id,
+        });
     }
   };
   return (
@@ -89,7 +102,11 @@ const TestTemplate: FC = () => {
               Добавить шаблон
             </Button>
           )}
-          {isEditMode && id && <Button variant="secondary">Отмена</Button>}
+          {isEditMode && id && (
+            <Button variant="secondary" onClick={cancelChanges}>
+              Отмена
+            </Button>
+          )}
           {!isEditMode && id && (
             <Button onClick={() => changeEditMode(true)}>Редактировать</Button>
           )}
