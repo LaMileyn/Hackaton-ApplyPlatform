@@ -3,6 +3,7 @@
 import { ClientOnly, Container } from '@/app/components';
 import useUser from '@/app/hooks/useUser/useUser';
 import { EUserRole } from '@/app/types/users';
+import CandidateDashboard from './components/CandidateDashBoard/CandidateDashboard';
 
 export default function Home() {
   const user = useUser();
@@ -16,6 +17,7 @@ export default function Home() {
     <ClientOnly>
       <Container>
         <h1 className="text-4xl text-primary-500 mb-12">Главная</h1>
+        {isCandidate && <CandidateDashboard />}
       </Container>
     </ClientOnly>
   );

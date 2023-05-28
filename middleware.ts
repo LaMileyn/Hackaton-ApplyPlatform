@@ -10,25 +10,10 @@ import {
 import { USER_COOKIES_KEY } from './app/hooks/useUser/helpers';
 
 const privateRoutes = [
+  HOME_ROUTE,
   PROFILE_ROUTE,
   VACANCIES_ROUTE,
   NOTIFICATIONS_ROUTE,
   TESTS_ROUTE,
 ];
-export function middleware(request: NextRequest) {
-  const { cookies } = request;
-  const url = request.url;
-  const basePath = 'http://localhost:3000/';
-  const token = cookies.get(USER_COOKIES_KEY);
-  if (url.includes(AUTH_ROUTE) && url.split(basePath)[1] === 'auth') {
-    if (token) {
-      return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
-    }
-  }
-  // if (privateRoutes.some((curr) => url.includes(curr))) {
-  //   if (!token && !url.includes(AUTH_ROUTE)) {
-  //     console.log(url);
-  //     return NextResponse.redirect(new URL(AUTH_ROUTE, request.url));
-  //   }
-  // }
-}
+export function middleware(request: NextRequest) {}

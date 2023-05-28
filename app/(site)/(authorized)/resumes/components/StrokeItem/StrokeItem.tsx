@@ -18,7 +18,7 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
         <div>
           <div>
             <ContentEditable
-              className="mb-1 outline-none editablePlaceholder text-xl font-medium text-primary-500"
+              className="mb-1 outline-none editablePlaceholder text-3xl font-medium text-primary-500"
               placeholder="Заголовок"
               disabled={!isEditing}
               html={stroke?.title || ''}
@@ -29,8 +29,8 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
           </div>
           <div>
             <ContentEditable
-              className="mb-3 font-normal text-system-900 outline-none editablePlaceholder"
-              placeholder="Подробно опишите ваши заслуги и достижения в несколько строк"
+              className="mb-3 font-medium text-system-900 text-xl outline-none editablePlaceholder"
+              placeholder="Организация"
               html={stroke?.subtitle || ''}
               disabled={!isEditing}
               onChange={(e) =>
@@ -40,7 +40,7 @@ const StrokeItem: FC<StrokeItemProps> = ({ blockId, stroke }) => {
           </div>
           <div>
             <ContentEditable
-              className="outline-none text-system-600 editablePlaceholder"
+              className="outline-none text-system-600 text-xl editablePlaceholder"
               placeholder="Название блока"
               disabled={!isEditing}
               html={stroke?.description || ''}

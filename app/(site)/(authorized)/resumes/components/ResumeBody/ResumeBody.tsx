@@ -16,7 +16,7 @@ const ResumeBody: FC<ResumeBodyProps> = () => {
         <Heading title="Обо мне" />
         <div>
           <ContentEditable
-            className="outline-none editablePlaceholder"
+            className="outline-none editablePlaceholder text-xl text-system-600"
             placeholder="Напишите сопроводительное сообщение о себе в несколько строк"
             html={resume?.about || ''}
             disabled={!isEditing}

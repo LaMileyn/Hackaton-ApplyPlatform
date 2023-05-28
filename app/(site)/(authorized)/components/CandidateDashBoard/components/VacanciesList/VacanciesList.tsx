@@ -1,18 +1,26 @@
 'use client';
 
 import { Card } from '@/app/components';
+import { VACANCIES_ROUTE } from '@/app/const/appRoutes';
+import { vacanciesService } from '@/app/services';
+import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
 
 const VacanciesList: FC = () => {
+  const { data } = useQuery(['vacancies'], () => vacanciesService.getAll());
+  const router = useRouter();
+
   return (
     <div>
-      {[...Array(5)].map((vacancy, i) => (
+      {data?.slice(0, 3).map((vacancy, i) => (
         <Card
           key={i}
-          company="Vkontakte"
+          company={vacancy.company}
           isCandidate={true}
-          title="Middle IOS Разработчик"
-          description="Lorem Ipsum d is a fish and therefore Lorem Ipsum d is a fish and therefore"
+          title={vacancy.title}
+          onClick={() => router.push(`${VACANCIES_ROUTE}/${vacancy.ID}`)}
+          description={vacancy.description}
         />
       ))}
     </div>
