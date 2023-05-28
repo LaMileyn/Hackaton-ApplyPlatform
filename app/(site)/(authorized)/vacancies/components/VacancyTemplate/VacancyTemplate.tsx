@@ -154,7 +154,7 @@ const VacanciesTemplate: FC<VacancyTemplateProps> = ({ ID }) => {
         <Button
           variant="transparent"
           iconLeft={<IoIosArrowBack />}
-          onClick={() => router.back()}
+          onClick={() => router.push(VACANCIES_ROUTE)}
         >
           Все вакансии
         </Button>

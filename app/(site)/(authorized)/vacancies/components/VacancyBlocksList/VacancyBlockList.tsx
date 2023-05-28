@@ -39,7 +39,7 @@ const VacancyBlockList: FC<VacancyBlockListProps> = ({
               />
 
               <ContentEditable
-                className="outline-none editablePlaceholder"
+                className="outline-none editablePlaceholder text-xl text-system-600"
                 placeholder="Пункт описания"
                 html={template.description}
                 disabled={!isEditMode}
