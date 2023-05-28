@@ -1,4 +1,9 @@
+'use client';
+
 import { ClientOnly, SideBar } from '@/app/components';
+import { AUTH_ROUTE } from '@/app/const/appRoutes';
+import useUser from '@/app/hooks/useUser/useUser';
+import { useRouter } from 'next/navigation';
 
 export const metadata = {
   title: 'Create Next App',
@@ -10,6 +15,12 @@ export default function AuthorizedLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+  const user = useUser();
+  if (!user) {
+    router.push(AUTH_ROUTE);
+  }
+  console.log(user);
   return (
     <div className="flex relative">
       <ClientOnly>

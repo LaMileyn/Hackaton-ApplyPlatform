@@ -16,14 +16,4 @@ const privateRoutes = [
   NOTIFICATIONS_ROUTE,
   TESTS_ROUTE,
 ];
-export function middleware(request: NextRequest) {
-  // const { cookies } = request;
-  // const url = request.url;
-  // const token = cookies.get('USER');
-  // if (url.includes(AUTH_ROUTE)) {
-  //   if (token) {
-  //     console.log(url);
-  //     return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
-  //   }
-  // }
-}
+export function middleware(request: NextRequest) {}

@@ -4,7 +4,7 @@ export type Question = {
   title: string;
   description?: string;
   variants: QuestionVariant[];
-  answer: QuestionVariant;
+  answer: number;
 } & BaseModel;
 
 export type QuestionVariant = {

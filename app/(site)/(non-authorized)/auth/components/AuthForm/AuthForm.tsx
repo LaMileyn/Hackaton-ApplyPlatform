@@ -11,9 +11,19 @@ import { EUserRole } from '@/app/types/users';
 import { useInput } from '@/app/hooks';
 import useSignIn from '../hooks/useSignIn';
 import useSignUp from '../hooks/useSignUp';
+import useUser from '@/app/hooks/useUser/useUser';
+import { useRouter } from 'next/navigation';
+import { HOME_ROUTE } from '@/app/const/appRoutes';
 
 const AuthForm: FC = () => {
   const [role, setRole] = useState<EUserRole>(EUserRole.CANDIDATE);
+  const router = useRouter();
+
+  const user = useUser();
+
+  if (user) {
+    router.push(HOME_ROUTE);
+  }
 
   const email = useInput();
   const password = useInput();

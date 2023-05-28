@@ -4,6 +4,8 @@ import { User } from '@/app/types/users';
 export const USER_COOKIES_KEY = 'USER';
 
 export function saveUser(user: User): void {
+  const exists = getCookie(USER_COOKIES_KEY);
+  if (exists) return;
   setCookie(USER_COOKIES_KEY, JSON.stringify(user));
 }
 

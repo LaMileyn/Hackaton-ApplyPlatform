@@ -6,9 +6,10 @@ export type VacancyInfoBlock = {
 };
 
 export enum EVacancyStatus {
-  NEW = 1,
-  SEARCH = 2,
-  INTERVIEW = 3,
+  NEW = 3,
+  SEARCH = 1,
+  INTERVIEW = 2,
+  CLOSED = 4,
 }
 export type Vacancy = {
   title: string;

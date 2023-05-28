@@ -3,43 +3,14 @@ import {
   ResumeFull,
   ResumeStroke,
 } from '@/app/types/resumes/models';
+import {
+  generateInitialBlock,
+  generateInitialResume,
+  generateInitialStroke,
+} from './helpers';
 
-export const initialStroke: ResumeStroke = {
-  ID: 1,
-  dateFrom: '2003-06-17T00:00:00Z',
-  dateTo: '2003-06-17T00:00:00Z',
-  description: '',
-  subtitle: '',
-  title: '',
-};
+export const initialStroke: ResumeStroke = generateInitialStroke();
 
-export const initialBlock: ResumeBlockFull = {
-  ID: 1,
-  title: '',
-  strokes: [initialStroke],
-};
+export const initialBlock: ResumeBlockFull = generateInitialBlock();
 
-export const blocksData: ResumeBlockFull[] = [
-  {
-    ID: 1,
-    title: '',
-    strokes: [
-      {
-        ID: 1,
-        title: '',
-        subtitle: '',
-        dateFrom: '2003-06-17T00:00:00Z',
-        dateTo: '2003-06-17T00:00:00Z',
-        description: '',
-      },
-    ],
-  },
-];
-
-export const initialResume: ResumeFull = {
-  ID: 1,
-  about: '',
-  blocks: blocksData,
-  title: '',
-  username: 'ahmed',
-};
+export const initialResume: ResumeFull = generateInitialResume();

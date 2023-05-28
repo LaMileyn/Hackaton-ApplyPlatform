@@ -17,6 +17,10 @@ class ResumesService {
     );
     return data;
   }
+  async getAllResumes() {
+    const { data } = await $api.get<Resume[]>('/cv');
+    return data;
+  }
 }
 
 export default new ResumesService();

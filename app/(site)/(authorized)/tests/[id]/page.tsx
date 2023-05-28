@@ -1,19 +1,12 @@
-import { Button, Container } from '@/app/components';
+import { Button, ClientOnly, Container } from '@/app/components';
 import { IoIosArrowBack } from 'react-icons/io';
+import TestTemplate from '../components/TestTemplate/TestTemplate';
 
 const TestPage = () => {
   return (
-    <Container>
-      <div className="mb-3">
-        <Button
-          className=""
-          variant="transparent"
-          iconLeft={<IoIosArrowBack />}
-        >
-          Назад
-        </Button>
-      </div>
-    </Container>
+    <ClientOnly>
+      <TestTemplate />
+    </ClientOnly>
   );
 };
 

@@ -176,7 +176,7 @@ const ResumeFormContextProvider = ({ children }: PropsWithChildren) => {
       );
       const updatedResume: ResumeFull = {
         ...state.resume,
-        blocks: updatedBlocks,
+        blocks: updatedBlocks.filter((el) => el.strokes.length > 0),
       };
       setState((prev) => ({ ...prev, resume: updatedResume }));
     },
