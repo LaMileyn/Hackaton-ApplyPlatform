@@ -35,6 +35,12 @@ pnpm dev
 
 ![TyHTjyr8mWY](https://github.com/LaMileyn/Hackaton-ApplyPlatform/assets/74772809/3ff593a4-11d0-4721-9c96-892b788fde77)
 
+### Создание / Редактирование тестов для кандинатов ( inline - editing )
+
+![SIDB51z78ec](https://github.com/LaMileyn/Hackaton-ApplyPlatform/assets/74772809/166713d4-3d14-43c2-a0c9-a4711354091a)
+![ltQ3BDZ-5QQ](https://github.com/LaMileyn/Hackaton-ApplyPlatform/assets/74772809/df421077-e01d-4021-b067-55209632f051)
+
+
 
 
 
